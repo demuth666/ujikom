@@ -23,33 +23,33 @@
             <table>
                 <thead>
                     <tr>
-                        <th> Tanggal Periksa <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Nama Pasien <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Keluhan <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Nama Dokter <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Diagnosa <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Obat <span class="icon-arrow">&UpArrow;</span></th>
-                        <th> Tindakan <span class="icon-arrow">&UpArrow;</span></th>
+                        <th> Tanggal Periksa</th>
+                        <th> Nama Pasien</th>
+                        <th> Keluhan</th>
+                        <th> Nama Dokter</th>
+                        <th> Diagnosa</th>
+                        <th> Obat</th>
+                        <th> Tindakan</th>
                         <th>
-                            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+                            Aksi
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td> 1 </td>
-                        <td>Zinzu Chan Lee</td>
-                        <td> Seoul </td>
-                        <td> 17 Dec, 2022 </td>
-                        <td>
-                            <p class="status delivered">Delivered</p>
-                        </td>
-                        <td> <strong> $128.90 </strong></td>
-                        <td>apa aja</td>
-                        <td>
-                            <ion-icon name="ellipsis-vertical-outline"></ion-icon>
-                        </td>
+                        @foreach ($rekam as $rekam)
+                            <td> {{ $rekam->tanggal_periksa }} </td>
+                            <td><strong> {{ $rekam->nama_pasien }}</strong></td>
+                            <td> {{ $rekam->keluhan }} </td>
+                            <td> {{ $rekam->nama_dokter }} </td>
+                            <td> {{ $rekam->diagnosa }} </td>
+                            <td> {{ $rekam->obat }} </td>
+                            <td> {{ $rekam->tindakan }} </td>
+                            <td>
+
+                            </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </section>

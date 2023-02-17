@@ -44,7 +44,9 @@
          <li class="link-item">
              <a href={{ route('logout') }} class="link">
                  <ion-icon name="exit-outline"></ion-icon>
-                 <span style="--i: 7">Logout</span>
+                 <span style="--i: 9">
+                     <h4>{{ Auth::user()->username }}</h4>
+                 </span>
              </a>
          </li>
      </ul>
