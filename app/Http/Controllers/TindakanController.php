@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Tindakan;
+
+class TindakanController extends Controller
+{
+    public function index()
+    {
+        $tindakan = Tindakan::all();
+        return view('admin.pages.Tindakan.index', [
+            'tindakan' => $tindakan
+        ]);
+    }
+
+    public function create()
+    {
+        return view('admin.pages.Tindakan.add');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'id' => ['required', 'integer'],
+            'nm_tindakan' => ['required', 'string'],
+            'ket' => ['required', 'string'],
+        ]);
+
+        Tindakan::create($request->all());
+        return redirect('/Tindakan');
+    }
+
+    public function edit($id)
+    {
+        $tindakan = Tindakan::find($id);
+        return view('admin.pages.Tindakan.edit', [
+            'tindakan' => $tindakan
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $tindakan = Tindakan::findOrFail($id);
+        $tindakan->update($request->except(['_token']));
+        return redirect('/Tindakan');
+    }
+
+
+    public function destroy($id)
+    {
+        $tindakan = Tindakan::find($id);
+        $tindakan->delete();
+        return redirect('/Tindakan');
+    }
+}

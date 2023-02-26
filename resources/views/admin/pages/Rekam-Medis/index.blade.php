@@ -2,42 +2,37 @@
 @section('content')
     <main class="table">
         <section class="table__header">
-            <h1>Rekam Medis</h1>
+            <h3>Rekam Medis</h3>
             <div class="input-group">
                 <input type="search" placeholder="Search Data...">
                 <ion-icon name="search-outline"></ion-icon>
             </div>
-            {{-- <div class="export__file">
-                <label for="export-file" class="export__file-btn" title="Export File"></label>
-                <input type="checkbox" id="export-file">
-                <div class="export__file-options">
-                    <label>Export As &nbsp; &#10140;</label>
-                    <label for="export-file" id="toPDF">PDF</label>
-                    <label for="export-file" id="toJSON">JSON</label>
-                    <label for="export-file" id="toCSV">CSV</label>
-                    <label for="export-file" id="toEXCEL">EXCEL</label>
-                </div>
-            </div> --}}
         </section>
+        <a href="#">
+            <button class="button-create" role="button">Tambah</button>
+        </a>
         <section class="table__body">
             <table>
                 <thead>
                     <tr>
-                        <th> Tanggal Periksa</th>
-                        <th> Nama Pasien</th>
-                        <th> Keluhan</th>
-                        <th> Nama Dokter</th>
-                        <th> Diagnosa</th>
-                        <th> Obat</th>
+                        <th> No Rekam Medis</th>
                         <th> Tindakan</th>
+                        <th> Obat</th>
+                        <th> Kd User</th>
+                        <th> Pasien</th>
+                        <th> Diagnosa</th>
+                        <th> Resep</th>
+                        <th> Keluhan</th>
+                        <th> Tanggal Pemeriksaan</th>
+                        <th> Keterangan</th>
                         <th>
                             Aksi
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        @foreach ($rekam as $rekam)
+                    @foreach ($rekam as $rekam)
+                        <tr>
                             <td> {{ $rekam->tanggal_periksa }} </td>
                             <td><strong> {{ $rekam->nama_pasien }}</strong></td>
                             <td> {{ $rekam->keluhan }} </td>
@@ -46,9 +41,18 @@
                             <td> {{ $rekam->obat }} </td>
                             <td> {{ $rekam->tindakan }} </td>
                             <td>
-
+                                <div class="button-action">
+                                    <a href="#">
+                                        <button class="button-edit" role="button">Edit</button>
+                                    </a>
+                                    <form action="" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="button-delete" role="button">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
-                    </tr>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RekamMedis;
 
-class AdminController extends Controller
+class RekamController extends Controller
 {
     public function index()
     {
         $rekam = RekamMedis::all();
-        return view('admin.rekam_medis', [
+        return view('admin.pages.Rekam-Medis.index', [
             'rekam' => $rekam
         ]);
     }
