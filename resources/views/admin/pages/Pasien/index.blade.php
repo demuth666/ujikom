@@ -8,9 +8,11 @@
                 <ion-icon name="search-outline"></ion-icon>
             </div>
         </section>
-        <a href={{ route('add.pasien') }}>
-            <button class="button-create" role="button">Tambah</button>
-        </a>
+        <div class="add">
+            <a href={{ route('add.pasien') }}>
+                <button class="button-create" role="button">Tambah</button>
+            </a>
+        </div>
         <section class="table__body">
             <table>
                 <thead>

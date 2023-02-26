@@ -13,7 +13,7 @@
                             <label>Poli</label>
                             <select name="poli_id" required>
                                 @foreach ($poli as $poli)
-                                    <option value="{{ $poli->id }}">{{ $poli->id }}</option>
+                                    <option value="{{ $poli->id }}">{{ $poli->nama_poli }}</option>
                                 @endforeach
                             </select>
                         </div>

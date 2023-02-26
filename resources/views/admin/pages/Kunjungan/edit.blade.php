@@ -1,7 +1,7 @@
 @extends('template.index')
 @section('content')
     <div class="container-form">
-        <header>Edit Labotarium</header>
+        <header>Edit Kunjungan</header>
         <form action="{{ route('update.kunjungan', $kunjungan->id) }}" method="POST">
             @method('PUT')
             @csrf
@@ -14,13 +14,14 @@
                         </div>
 
                         <div class="input-field">
-                            <label>No Pasien</label>
-                            <input type="number" name="no_pasien" value="{{ $kunjungan->no_pasien }}" required>
+                            <label> Pasien</label>
+                            <input type="text" name="no_pasien" value="{{ $kunjungan->pasien['nama_pasien'] }}" disabled
+                                required>
                         </div>
 
                         <div class="input-field">
-                            <label>Kd Poli</label>
-                            <input type="number" name="kd_poli" value="{{ $kunjungan->kd_poli }}" required>
+                            <label> Poli</label>
+                            <input type="text" name="kd_poli" value="{{ $kunjungan->poli['nama_poli'] }}" required>
                         </div>
 
                         <div class="input-field">

@@ -43,7 +43,7 @@ class DokterController extends Controller
 
     public function edit($id)
     {
-        $poli = Poli::find($id);
+        $poli = Poli::all();
         $dokter = Dokter::find($id);
         return view('admin.pages.Dokter.edit', [
             'dokter' => $dokter,

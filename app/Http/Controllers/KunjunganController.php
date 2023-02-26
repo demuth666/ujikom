@@ -9,11 +9,24 @@ use App\Models\Poli;
 
 class KunjunganController extends Controller
 {
-    public function index()
+    public function search(Request $request)
     {
-        $kunjungan = Kunjungan::with('pasien', 'poli')->paginate(5);
+        $query = $request->input('data');
+        $kunjungan = Kunjungan::where('pasien_id', 'like', '%'.$query.'%')
+        ->orWhere('poli_id', 'like', '%'.$query.'%')
+        ->get();
         return view('admin.pages.Kunjungan.index', [
             'kunjungan' => $kunjungan
+        ]);
+
+        
+    }
+
+    public function index(Request $request)
+    {
+        $kunjungan = Kunjungan::with('pasien', 'poli')->paginate(10);
+        return view('admin.pages.Kunjungan.index', [
+            'kunjungan' => $kunjungan,
         ]);
     }
 

@@ -9,6 +9,11 @@
                     <div class="fields">
 
                         <div class="input-field">
+                            <label>Nama Dokter</label>
+                            <input type="text" name="nama_dokter" required>
+                        </div>
+
+                        <div class="input-field">
                             <label>Poli</label>
                             <select name="poli_id" class="pilih" required>
                                 @foreach ($poli as $poli)
@@ -26,11 +31,6 @@
                         <div class="input-field">
                             <label>Kd User</label>
                             <input type="number" name="kd_user" required>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Nama Dokter</label>
-                            <input type="text" name="nama_dokter" required>
                         </div>
 
                         <div class="input-field">

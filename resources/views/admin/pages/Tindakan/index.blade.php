@@ -8,14 +8,15 @@
                 <ion-icon name="search-outline"></ion-icon>
             </div>
         </section>
-        <a href={{ route('add.tindakan') }}>
-            <button class="button-create" role="button">Tambah</button>
-        </a>
+        <div class="add">
+            <a href={{ route('add.tindakan') }}>
+                <button class="button-create" role="button">Tambah</button>
+            </a>
+        </div>
         <section class="table__body">
             <table>
                 <thead>
                     <tr>
-                        <th> Kd Tindakan</th>
                         <th> Nama TIndakan</th>
                         <th> Keterangan</th>
                         <th> Aksi</th>
@@ -24,7 +25,6 @@
                 <tbody>
                     @foreach ($tindakan as $tindakan)
                         <tr>
-                            <td> {{ $tindakan->id }} </td>
                             <td><strong> {{ $tindakan->nm_tindakan }}</strong></td>
                             <td> {{ $tindakan->ket }} </td>
                             <td>
