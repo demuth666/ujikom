@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_periksa');
-            $table->string('nama_pasien');
-            $table->string('keluhan');
-            $table->string('nama_dokter');
+            $table->integer('rm_id');
+            $table->integer('tindakan_id');
+            $table->integer('obat_id');
+            $table->integer('user_id');
+            $table->integer('pasien_id');
             $table->string('diagnosa');
-            $table->string('obat');
-            $table->string('tindakan');
+            $table->string('resep');
+            $table->string('keluhan');
+            $table->date('tgl_pemeriksaan');
+            $table->text('ket');
             $table->timestamps();
         });
     }

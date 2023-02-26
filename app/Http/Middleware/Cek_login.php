@@ -23,7 +23,9 @@ class Cek_login
         $user = Auth::user();
 
         if($user->kd_user == $roles)
+        {  
             return $next($request);
+        }
 
 
         return redirect('login')->with('error',"kamu gak punya akses");

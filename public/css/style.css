@@ -8,14 +8,6 @@
   --light-text-clr: #fff;
   --hover-clr: #f1e8fd;
 }
-body.dark-mode {
-  --primary-clr: #7522e6;
-  --bg-clr: #1e1e1e;
-  --white-bg: #23262b;
-  --dark-text-clr: #fff;
-  --light-text-clr: #fff;
-  --hover-clr: #31313f;
-}
 * {
   margin: 0;
   padding: 0;
@@ -119,15 +111,16 @@ body {
 }
 .link-item.active a .num-noti {
   color: var(--primary-clr);
-  background-color: var(--white-bg);
+  background-color: var(--white-bg);  
 }
 
 main.table {
+  margin: 0 15px;
   width: 95vw;
   height: 100vh;
   background-color: #fff5;
   backdrop-filter: blur(7px);
-  box-shadow: 0 .4rem .8rem #0005;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
   border-radius: .8rem;
   overflow: hidden;
 }
@@ -332,4 +325,241 @@ thead th.asc span.icon-arrow{
 
 thead th.active,tbody td.active {
   color: #6c00bd;
+}
+
+.button-delete {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  min-height: 20px;
+  outline: 0;
+  padding: 10px 5px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  margin-top: 5px;
+}
+
+.button-delete:hover,
+.button-delete:active {
+  background-color: #FF4742;
+  background-position: 0 0;
+}
+
+.button-delete:active {
+  opacity: .5;
+}
+
+.button-edit {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  min-height: 20px;
+  outline: 0;
+  padding: 10px 11px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+.button-edit:hover,
+.button-edit:active {
+  background-color: lightblue;
+  background-position: 0 0;
+  /* color: #FF4742; */
+}
+
+.button-edit:active {
+  opacity: .5;
+}
+
+.button-create {
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 89%;
+  margin-bottom: 10px;
+  outline: none;
+  /* padding: 16px 24px; */
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100px;
+  will-change: transform;
+}
+
+.button-create:disabled {
+  pointer-events: none;
+}
+
+.button-create:hover {
+  color: #fff;
+  background-color: blue;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-create:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.container-form{
+  position: relative;
+  /* max-width: 900px; */
+  width: 100%;
+  border-radius: .8rem;
+  padding: 30px;
+  margin: 0 15px;
+  background-color: #fff5;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.container-form form .form.first{
+  background-color:#fff5;
+}
+
+.container-form header{
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  color: #333;
+}
+
+.container-form form{
+  position: relative;
+  margin-top: 16px;
+  min-height: 490px;
+  background-color: #fff5;
+  overflow: hidden;
+}
+
+
+form.secActive .form.first{
+  pointer-events: none;
+  transform: translateX(-100%);
+}
+.container-form form .title{
+  display: block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  margin: 6px 0;
+  color: #333;
+}
+.container-form form .fields{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+form .fields .input-field{
+  display: flex;
+  width: calc(100% / 3 - 15px);
+  flex-direction: column;
+  margin: 4px 0;
+}
+.input-field label{
+  font-size: 12px;
+  font-weight: 500;
+  color: #2e2e2e;
+}
+
+.input-field input, select{
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  padding: 0 15px;
+  height: 29px;
+  margin: 8px 0;
+}
+.input-field input :focus,
+.input-field select:focus{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+.input-field select,
+.input-field input[type="date"]{
+  color: #707070;
+}
+.input-field input[type="date"]:valid{
+  color: #333;
+}
+.container-form form button, .backBtn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 45px;
+  max-width: 200px;
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #fff;
+  border-radius: 5px;
+  margin: 25px 0;
+  background-color: #4070f4;
+  transition: all 0.3s linear;
+  cursor: pointer;
+}
+.container-form form .btnText{
+  font-size: 14px;
+  font-weight: 400;
+}
+form button:hover{
+  background-color: #265df2;
+}
+
+@media (max-width: 750px) {
+  .container-form form{
+      overflow-y: scroll;
+  }
+  .container-form form::-webkit-scrollbar{
+     display: none;
+  }
+  form .fields .input-field .pilih{
+      width: calc(100% / 2 - 15px);
+  }
+}
+
+@media (max-width: 550px) {
+  form .fields .input-field{
+      width: 100%;
+  }
 }

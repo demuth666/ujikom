@@ -12,6 +12,14 @@ class RekamMedis extends Model
     protected $table = 'rekam_medis';
 
     protected $fillable = [
-        'tanggal_periksa', 'nama_pasien'
+        'rm_id', 'tindakan_id', 'obat_id', 'user_id', 'pasien_id', 'diagnosa', 'resep',
+        'keluhan', 'tgl_pemeriksaan', 'ket'
     ];
+
+    protected $guarded = [];
+
+    public function lab()
+    {
+        $this->belongsTo(Lab::class);
+    }
 }

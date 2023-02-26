@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('labotarium', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('username');
-            $table->string('password');
-            $table->timestamp('email_verified_at')->nullable();
-            $table->rememberToken();
+            $table->integer('no_rm');
+            $table->string('hasil_lab');
+            $table->text('ket');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('labotarium');
     }
 };
