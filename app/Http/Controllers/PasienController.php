@@ -35,7 +35,7 @@ class PasienController extends Controller
         ]);
 
         Pasien::create($request->all());
-        return redirect('/Pasien');
+        return redirect('/Pasien')->with('toast_success', 'Data berhasil tersimpan!');;
     }
 
     public function edit($id)
@@ -50,13 +50,13 @@ class PasienController extends Controller
     {
         $pasien = Pasien::findOrFail($id);
         $pasien->update($request->except(['_token']));
-        return redirect('/Pasien');
+        return redirect('/Pasien')->with('toast_success', 'Data berhasil di edit!');;
     }
 
     public function destroy($id)
     {
        $pasien = Pasien::find($id);
        $pasien->delete();
-        return redirect('/Pasien');
+        return redirect('/Pasien')->with('toast_success', 'Data berhasil dihapus!');;
     }
 }

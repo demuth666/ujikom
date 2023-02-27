@@ -8,9 +8,11 @@
                 <ion-icon name="search-outline"></ion-icon>
             </div>
         </section>
-        <a href="{{ route('add.lab') }}">
-            <button class="button-create" role="button">Tambah</button>
-        </a>
+        <div class="add">
+            <a href="{{ route('add.lab') }}">
+                <button class="button-create" role="button">Tambah</button>
+            </a>
+        </div>
         <section class="table__body">
             <table>
                 <thead>
@@ -32,7 +34,7 @@
                                     <a href="{{ route('edit.lab', $lab->id) }}">
                                         <button class="button-edit" role="button">Edit</button>
                                     </a>
-                                    <form action="{{ route('destroy.lab', $lab->id) }}" method="POST">
+                                    <form action="{{ route('destroy.lab', $lab->id) }}" id="delete-form" method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="button-delete" role="button" type="submit">Hapus</button>

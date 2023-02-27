@@ -13,12 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('kunjungan', function (Blueprint $table) {
-            $table->id();
-            $table->date('tgl_kunjungan');
-            $table->integer('no_pasien');
-            $table->integer('poli_id');
-            $table->time('jam_kunjungan');
+        Schema::create('poli', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->string('nama_poli');
+            $table->integer('lantai');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kunjungan');
+        Schema::dropIfExists('poli');
     }
 };

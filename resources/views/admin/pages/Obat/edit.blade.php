@@ -27,7 +27,11 @@
                             <label>Harga</label>
                             <input type="number" name="harga" value="{{ $obat->harga }}" required>
                         </div>
+                    </div>
+                </div>
 
+                <div class="details-id">
+                    <div class="fields">
                         <button class="nextBtn">
                             <span class="btnText">Simpan</span>
                         </button>

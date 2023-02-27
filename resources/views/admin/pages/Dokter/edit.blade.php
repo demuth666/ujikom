@@ -13,7 +13,7 @@
                             <label>Poli</label>
                             <select name="poli_id" required>
                                 @foreach ($poli as $poli)
-                                    <option value="{{ $poli->id }}">{{ $poli->id }}</option>
+                                    <option value="{{ $poli->id }}">{{ $poli->nama_poli }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -25,7 +25,7 @@
 
                         <div class="input-field">
                             <label>Kd User</label>
-                            <input type="text" name="kd_user" value="{{ $dokter->kd_user }}" required>
+                            <input type="text" name="user_id" value="{{ $dokter->user_id }}" required>
                         </div>
 
                         <div class="input-field">

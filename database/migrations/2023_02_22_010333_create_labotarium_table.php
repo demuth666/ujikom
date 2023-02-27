@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('labotarium', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->integer('no_rm');
             $table->string('hasil_lab');
             $table->text('ket');
