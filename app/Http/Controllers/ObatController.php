@@ -31,7 +31,7 @@ class ObatController extends Controller
         ]);
 
         Obat::create($request->all());
-        return redirect('/Obat');
+        return redirect('/Obat')->with('toast_success', 'Data berhasil tersimpan!');
     }
 
     public function edit($id)
@@ -46,13 +46,13 @@ class ObatController extends Controller
     {
         $obat = Obat::findOrFail($id);
         $obat->update($request->except(['_token']));
-        return redirect('/Obat');
+        return redirect('/Obat')->with('toast_success', 'Data berhasil di edit!');
     }
 
     public function destroy($id)
     {
         $obat = Obat::find($id);
         $obat->delete();
-        return redirect('/Obat');
+        return redirect('/Obat')->with('toast_success', 'Data berhasil dihapus!');
     }
 }

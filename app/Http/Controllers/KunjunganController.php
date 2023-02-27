@@ -6,15 +6,19 @@ use Illuminate\Http\Request;
 use App\Models\Kunjungan;
 use App\Models\Pasien;
 use App\Models\Poli;
+Use Alert;
+
 
 class KunjunganController extends Controller
 {
     public function search(Request $request)
     {
-        $query = $request->input('data');
-        $kunjungan = Kunjungan::where('pasien_id', 'like', '%'.$query.'%')
-        ->orWhere('poli_id', 'like', '%'.$query.'%')
-        ->get();
+        $input = $request->input('data');
+        $kunjungan = Kunjungan::whereHas('pasien', function ($query) use ($input){
+            $query->where('nama_pasien', 'like', '%'.$input.'%');
+        })->orWhereHas('poli', function ($query) use ($input){
+            $query->where('nama_poli', 'like', '%'.$input.'%');
+        })->get();
         return view('admin.pages.Kunjungan.index', [
             'kunjungan' => $kunjungan
         ]);
@@ -44,13 +48,13 @@ class KunjunganController extends Controller
     {
         $request->validate([
             'tgl_kunjungan' => ['required'],
-            'pasien_id' => ['required', 'integer'],
-            'poli_id' => ['required', 'integer'],
+            'pasien_id' => ['required', 'string'],
+            'poli_id' => ['required', 'string'],
             'jam_kunjungan' => ['required'],
         ]);
 
         Kunjungan::create($request->all());
-        return redirect('/Kunjungan');
+        return redirect('/Kunjungan')->with('toast_success', 'Data berhasil tersimpan!');
     }
 
     public function edit($id)
@@ -66,13 +70,13 @@ class KunjunganController extends Controller
     {
        $kunjungan = Kunjungan::findOrFail($id);
        $kunjungan->update($request->except(['_token']));
-        return redirect('/Kunjungan');
+        return redirect('/Kunjungan')->with('toast_success', 'Data berhasil di edit!');
     }
 
     public function destroy($id)
     {
        $kunjungan = Kunjungan::find($id);
        $kunjungan->delete();
-        return redirect('/Kunjungan');
+        return redirect('/Kunjungan')->with('toast_success', 'Data berhasil di hapus!');
     }
 }

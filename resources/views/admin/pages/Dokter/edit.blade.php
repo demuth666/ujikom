@@ -25,7 +25,7 @@
 
                         <div class="input-field">
                             <label>Kd User</label>
-                            <input type="text" name="kd_user" value="{{ $dokter->kd_user }}" required>
+                            <input type="text" name="user_id" value="{{ $dokter->user_id }}" required>
                         </div>
 
                         <div class="input-field">

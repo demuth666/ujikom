@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('poli', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->string('nama_poli');
             $table->integer('lantai');
             $table->timestamps();

@@ -46,7 +46,8 @@
                                     <a href={{ route('edit.pasien', $pasien->id) }}>
                                         <button class="button-edit" role="button">Edit</button>
                                     </a>
-                                    <form action={{ route('destroy.pasien', $pasien->id) }} method="POST">
+                                    <form action={{ route('destroy.pasien', $pasien->id) }} id="delete-form"
+                                        method="POST">
                                         @csrf
                                         @method('delete')
                                         <button class="button-delete" role="button">Hapus</button>

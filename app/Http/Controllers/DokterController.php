@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dokter;
 use App\Models\Poli;
+Use Alert;
+
 
 class DokterController extends Controller
 {
@@ -27,9 +29,9 @@ class DokterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'poli_id' => ['required', 'integer'],
+            'poli_id' => ['required', 'string'],
             'tgl_kunjungan' => ['required', 'date'],
-            'kd_user' => ['required', 'integer'],
+            'user_id' => ['required', 'integer'],
             'nama_dokter' => ['required', 'string', 'max:255'],
             'sip' => ['required', 'integer'],
             'tempat_lahir' => ['required', 'string', 'max:255'],
@@ -38,7 +40,7 @@ class DokterController extends Controller
         ]);
 
         Dokter::create($request->all());
-        return redirect('/Dokter');
+        return redirect('/Dokter')->with('toast_success', 'Data berhasil tersimpan!');
     }
 
     public function edit($id)
@@ -55,13 +57,13 @@ class DokterController extends Controller
     {
         $dokter = Dokter::findOrFail($id);
         $dokter->update($request->except(['_token']));
-        return redirect('/Dokter');
+        return redirect('/Dokter')->with('toast_success', 'Data berhasil di edit!');;
     }
 
     public function destroy($id)
     {
         $dokter = Dokter::find($id);
         $dokter->delete();
-        return redirect('/Dokter');
+        return redirect('/Dokter')->with('toast_success', 'Data berhasil dihapus!');;
     }
 }

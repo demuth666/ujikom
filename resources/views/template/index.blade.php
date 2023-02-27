@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+    @include('sweetalert::alert')
     @include('template.sidebar')
     @yield('content')
     <script 
@@ -28,10 +28,29 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
     <script src={{ asset('js/script.js') }}></script>
     <script>
         $(document).ready(function() {
             $('.pilih').select2();
+        });
+    </script>
+    <script>
+        $('form#delete-form').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Anda yakin?',
+                text: 'Data akan dihapus secara permanen',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $(this).unbind('submit').submit();
+                }
+            })
         });
     </script>
 </body>

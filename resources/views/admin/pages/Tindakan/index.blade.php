@@ -32,7 +32,8 @@
                                     <a href="{{ route('edit.tindakan', $tindakan->id) }}">
                                         <button class="button-edit" role="button">Edit</button>
                                     </a>
-                                    <form action="{{ route('destroy.tindakan', $tindakan->id) }}" method="POST">
+                                    <form action="{{ route('destroy.tindakan', $tindakan->id) }}" id="delete-form"
+                                        method="POST">
                                         @csrf
                                         @method('DELETE')
                                         <button class="button-delete" role="button" type="submit">Hapus</button>

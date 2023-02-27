@@ -28,7 +28,7 @@ class PoliController extends Controller
         ]);
 
         Poli::create($request->all());
-        return redirect('/Poli');
+        return redirect('/Poli')->with('toast_success', 'Data berhasil tersimpan!');
     }
 
     public function edit($id)
@@ -43,13 +43,13 @@ class PoliController extends Controller
     {
         $poli = Poli::findOrFail($id);
         $poli->update($request->except(['_token']));
-        return redirect('/Poli');
+        return redirect('/Poli')->with('toast_success', 'Data berhasil di edit!');
     }
 
     public function destroy($id)
     {
        $poli = Poli::find($id);
        $poli->delete();
-        return redirect('/Poli');
+        return redirect('/Poli')->with('toast_success', 'Data berhasil dihapus!');
     }
 }

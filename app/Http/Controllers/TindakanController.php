@@ -28,7 +28,7 @@ class TindakanController extends Controller
         ]);
 
         Tindakan::create($request->all());
-        return redirect('/Tindakan');
+        return redirect('/Tindakan')->with('toast_success', 'Data berhasil tersimpan!');;
     }
 
     public function edit($id)
@@ -43,7 +43,7 @@ class TindakanController extends Controller
     {
         $tindakan = Tindakan::findOrFail($id);
         $tindakan->update($request->except(['_token']));
-        return redirect('/Tindakan');
+        return redirect('/Tindakan')->with('toast_success', 'Data berhasil di edit!');;
     }
 
 
@@ -51,6 +51,6 @@ class TindakanController extends Controller
     {
         $tindakan = Tindakan::find($id);
         $tindakan->delete();
-        return redirect('/Tindakan');
+        return redirect('/Tindakan')->with('toast_success', 'Data berhasil dihapus!');;
     }
 }

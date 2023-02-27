@@ -29,7 +29,7 @@ class LabController extends Controller
         ]);
 
         Lab::create($request->all());
-        return redirect('/Lab');
+        return redirect('/Lab')->with('toast_success', 'Data berhasil tersimpan!');
     }
 
     public function edit($id)
@@ -45,14 +45,14 @@ class LabController extends Controller
     {
        $lab = Lab::findOrFail($id);
        $lab->update($request->except(['_token']));
-        return redirect('/Lab');
+        return redirect('/Lab')->with('toast_success', 'Data berhasil di edit!');
     }
 
     public function destroy($id)
     {
        $lab = Lab::find($id);
        $lab->delete();
-        return redirect('/Lab');
+        return redirect('/Lab')->with('toast_success', 'Data berhasil dihapus!');
     }
 
 }

@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::put('Lab/update/{id}', [LabController::class, 'update'])->name('update.lab');
         Route::delete('/Lab/{id}', [LabController::class, 'destroy'])->name('destroy.lab');
         //Kunjungan Controller
-        Route::get('Kunjungan/Search', [KunjunganController::class, 'search'])->name('search');
+        Route::get('Kunjungan/Search', [KunjunganController::class, 'search'])->name('search.kunjungan');
         Route::get('Kunjungan', [KunjunganController::class, 'index'])->name('kunjungan');
         Route::get('Kunjungan/add', [KunjunganController::class, 'create'])->name('add.kunjungan');
         Route::post('Kunjungan/store', [KunjunganController::class, 'store'])->name('store.kunjungan');

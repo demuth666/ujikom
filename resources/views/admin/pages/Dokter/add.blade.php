@@ -30,7 +30,7 @@
 
                         <div class="input-field">
                             <label>Kd User</label>
-                            <input type="number" name="kd_user" required>
+                            <input type="number" name="user_id" required>
                         </div>
 
                         <div class="input-field">
