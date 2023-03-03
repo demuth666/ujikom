@@ -14,14 +14,22 @@
                         </div>
 
                         <div class="input-field">
-                            <label> Pasien</label>
-                            <input type="text" name="no_pasien" value="{{ $kunjungan->pasien['nama_pasien'] }}" disabled
-                                required>
+                            <label>Pasien</label>
+                            <select name="pasien_id" class="pilih" required>
+                                @foreach ($pasien as $pasien)
+                                    <option value="{{ $pasien->id }}" required>{{ $pasien->nama_pasien }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="input-field">
                             <label> Poli</label>
-                            <input type="text" name="kd_poli" value="{{ $kunjungan->poli['nama_poli'] }}" required>
+                            <select name="poli_id" class="pilih" required>
+                                @foreach ($poli as $poli)
+                                    <option value="{{ $poli->id }}" {{ $poli->id == $poli->id ? 'selected' : '' }}
+                                        required>{{ $poli->nama_poli }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="input-field">

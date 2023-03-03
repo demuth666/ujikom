@@ -17,7 +17,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th> Nama TIndakan</th>
+                        <th> Nama Tindakan</th>
                         <th> Keterangan</th>
                         <th> Aksi</th>
                     </tr>

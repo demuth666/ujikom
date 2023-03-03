@@ -22,5 +22,10 @@ class Dokter extends Model
         return $this->belongsTo(Poli::class);
     }
 
+    public function rekammedis()
+    {
+        return $this->hasMany(RekamMedis::class);
+    }
+
     protected $guarded = [];
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('labotarium', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('no_rm');
+            $table->string('no_rm')->default('RM1-' . now()->format('Ymd'));
             $table->string('hasil_lab');
             $table->text('ket');
             $table->timestamps();

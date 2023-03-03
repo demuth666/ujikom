@@ -17,8 +17,8 @@ class AkunSeeder extends Seeder
     {
         $user = [
             [
-                'username' => 'admin',
-                'kd_user'=>'admin',
+                'username' => 'ahmad',
+                'user_id'=>'admin',
                'password'=> bcrypt('123456'),
             ],
         ];

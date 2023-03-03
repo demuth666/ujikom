@@ -18,4 +18,9 @@ class Tindakan extends Model
          'nm_tindakan', 'ket'
     ];
 
+    public function RekamMedis()
+    {
+        return $this->hasMany(RekamMedis::class);
+    }
+
 }

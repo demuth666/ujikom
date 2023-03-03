@@ -9,7 +9,7 @@
             </div>
         </section>
         <div class="add">
-            <a href="#">
+            <a href="{{ route('rekam.medis.add') }}">
                 <button class="button-create" role="button">Tambah</button>
             </a>
         </div>
@@ -20,7 +20,7 @@
                         <th> No Rekam Medis</th>
                         <th> Tindakan</th>
                         <th> Obat</th>
-                        <th> Kd User</th>
+                        <th> Dokter</th>
                         <th> Pasien</th>
                         <th> Diagnosa</th>
                         <th> Resep</th>
@@ -35,22 +35,26 @@
                 <tbody>
                     @foreach ($rekam as $rekam)
                         <tr>
-                            <td> {{ $rekam->tanggal_periksa }} </td>
-                            <td><strong> {{ $rekam->nama_pasien }}</strong></td>
-                            <td> {{ $rekam->keluhan }} </td>
-                            <td> {{ $rekam->nama_dokter }} </td>
+                            <td> {{ $rekam->labotarium['no_rm'] }} </td>
+                            <td> {{ $rekam->tindakan['nm_tindakan'] }} </td>
+                            <td> {{ $rekam->obat_id }} </td>
+                            <td> {{ $rekam->dokter['nama_dokter'] }} </td>
+                            <td> {{ $rekam->pasien['nama_pasien'] }} </td>
                             <td> {{ $rekam->diagnosa }} </td>
-                            <td> {{ $rekam->obat }} </td>
-                            <td> {{ $rekam->tindakan }} </td>
+                            <td> {{ $rekam->resep }} </td>
+                            <td> {{ $rekam->keluhan }} </td>
+                            <td> {{ $rekam->tgl_pemeriksaan }} </td>
+                            <td> {{ $rekam->ket }} </td>
                             <td>
                                 <div class="button-action">
-                                    <a href="#">
+                                    <a href="{{ route('rekam.medis.edit', $rekam->id) }}">
                                         <button class="button-edit" role="button">Edit</button>
                                     </a>
-                                    <form action="" method="POST">
+                                    <form action="{{ route('destroy.rekam.medis', $rekam->id) }}" id="delete-form"
+                                        method="POST">
                                         @csrf
-                                        @method('delete')
-                                        <button class="button-delete" role="button">Hapus</button>
+                                        @method('DELETE')
+                                        <button class="button-delete" role="button" type="submit">Hapus</button>
                                     </form>
                                 </div>
                             </td>

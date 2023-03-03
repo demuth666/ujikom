@@ -60,9 +60,12 @@ class KunjunganController extends Controller
     public function edit($id)
     {
         $kunjungan = Kunjungan::findOrFail($id);
-        
+        $pasien = Pasien::all();
+        $poli = Poli::all();
         return view('admin.pages.Kunjungan.edit', [
-            'kunjungan' => $kunjungan
+            'kunjungan' => $kunjungan,
+            'pasien' => $pasien,
+            'poli' => $poli
         ]);
     }
 

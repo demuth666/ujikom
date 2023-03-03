@@ -29,7 +29,7 @@ class PasienController extends Controller
             'alamat' => ['required', 'string'],
             'tgl_lahir' => ['required'],
             'usia' => ['required', 'integer'],
-            'no_tlp' => ['required', 'integer'],
+            'no_tlp' => ['required'],
             'nm_kk' => ['required', 'string'],
             'hub_kel' => ['required', 'string'],
         ]);

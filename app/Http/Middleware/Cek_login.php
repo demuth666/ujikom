@@ -22,7 +22,7 @@ class Cek_login
         }
         $user = Auth::user();
 
-        if($user->kd_user == $roles)
+        if($user->user_id == $roles)
         {  
             return $next($request);
         }
