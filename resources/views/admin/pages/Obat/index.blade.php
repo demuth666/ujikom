@@ -3,10 +3,10 @@
     <main class="table">
         <section class="table__header">
             <h3>Obat</h3>
-            <div class="input-group">
-                <input type="search" placeholder="Search Data...">
+            <form action="{{ route('search.obat') }}" method="GET" class="input-group">
+                <input type="search" name="data" placeholder="Search Data...">
                 <ion-icon name="search-outline"></ion-icon>
-            </div>
+            </form>
         </section>
         <div class="add">
             <a href={{ route('add.obat') }}>
@@ -25,27 +25,32 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($obat as $obat)
-                        <tr>
-                            <td> {{ $obat->nama_obat }} </td>
-                            <td><strong> {{ $obat->jml_obat }}</strong></td>
-                            <td> {{ $obat->ukuran }} </td>
-                            <td> {{ $obat->harga }} </td>
-                            <td>
-                                <div class="button-action">
-                                    <a href="{{ route('edit.obat', $obat->id) }}">
-                                        <button class="button-edit" role="button">Edit</button>
-                                    </a>
-                                    <form action="{{ route('destroy.obat', $obat->id) }}" id="delete-form" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="button-delete" role="button" type="submit">Hapus</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if (count($obat))
+                        @foreach ($obat as $obat)
+                            <tr>
+                                <td> {{ $obat->nama_obat }} </td>
+                                <td><strong> {{ $obat->jml_obat }}</strong></td>
+                                <td> {{ $obat->ukuran }} </td>
+                                <td> {{ $obat->harga }} </td>
+                                <td>
+                                    <div class="button-action">
+                                        <a href="{{ route('edit.obat', $obat->id) }}">
+                                            <button class="button-edit" role="button">Edit</button>
+                                        </a>
+                                        <form action="{{ route('destroy.obat', $obat->id) }}" id="delete-form"
+                                            method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="button-delete" role="button" type="submit">Hapus</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                 </tbody>
+            @else
+                <p>Data tidak ditemukan</p>
+                @endif
             </table>
         </section>
     </main>
