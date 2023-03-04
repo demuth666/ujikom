@@ -7,6 +7,20 @@ use App\Models\Obat;
 
 class ObatController extends Controller
 {
+    public function search(Request $request)
+    {
+        $input = $request->input('data');
+            $results = Obat::where('nama_obat', 'like', '%'.$input.'%')
+            ->orWhere('jml_obat', 'like', '%'.$input.'%')
+            ->orWhere('ukuran', 'like', '%'.$input.'%')
+            ->orWhere('harga', 'like', '%'.$input.'%')
+            ->get();
+
+        return view('admin.pages.Obat.index', [
+            'obat' => $results
+        ]);
+    } 
+
     public function index()
     {
         $obat = Obat::all();

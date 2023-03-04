@@ -3,10 +3,10 @@
     <main class="table">
         <section class="table__header">
             <h3>Pasien</h3>
-            <div class="input-group">
-                <input type="search" placeholder="Search Data...">
+            <form action="{{ route('search.pasien') }}" method="GET" class="input-group">
+                <input type="search" name="data" placeholder="Search Data...">
                 <ion-icon name="search-outline"></ion-icon>
-            </div>
+            </form>
         </section>
         <div class="add">
             <a href={{ route('add.pasien') }}>
@@ -30,34 +30,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pasien as $pasien)
-                        <tr>
-                            <td><strong> {{ $pasien->nama_pasien }}</strong></td>
-                            <td> {{ $pasien->j_kelamin }} </td>
-                            <td> {{ $pasien->agama }} </td>
-                            <td> {{ $pasien->alamat }} </td>
-                            <td> {{ $pasien->tgl_lahir }} </td>
-                            <td> {{ $pasien->usia }} </td>
-                            <td> {{ $pasien->no_tlp }} </td>
-                            <td> {{ $pasien->nm_kk }} </td>
-                            <td> {{ $pasien->hub_kel }} </td>
-                            <td>
-                                <div class="button-action">
-                                    <a href={{ route('edit.pasien', $pasien->id) }}>
-                                        <button class="button-edit" role="button">Edit</button>
-                                    </a>
-                                    <form action={{ route('destroy.pasien', $pasien->id) }} id="delete-form"
-                                        method="POST">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="button-delete" role="button">Hapus</button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if (count($pasien))
+                        @foreach ($pasien as $pasien)
+                            <tr>
+                                <td><strong> {{ $pasien->nama_pasien }}</strong></td>
+                                <td> {{ $pasien->j_kelamin }} </td>
+                                <td> {{ $pasien->agama }} </td>
+                                <td> {{ $pasien->alamat }} </td>
+                                <td> {{ $pasien->tgl_lahir }} </td>
+                                <td> {{ $pasien->usia }} </td>
+                                <td> {{ $pasien->no_tlp }} </td>
+                                <td> {{ $pasien->nm_kk }} </td>
+                                <td> {{ $pasien->hub_kel }} </td>
+                                <td>
+                                    <div class="button-action">
+                                        <a href={{ route('edit.pasien', $pasien->id) }}>
+                                            <button class="button-edit" role="button">Edit</button>
+                                        </a>
+                                        <form action={{ route('destroy.pasien', $pasien->id) }} id="delete-form"
+                                            method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="button-delete" role="button">Hapus</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                 </tbody>
             </table>
+        @else
+            <p>Data tidak ditemukan</p>
+            @endif
         </section>
     </main>
 @endsection

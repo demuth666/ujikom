@@ -23,12 +23,18 @@ class Lab extends Model
         return $this->hasMany(RekamMedis::class);
     }
 
-    public function setNoRmAttribute($value)
+    public static function boot()
     {
-        $date = date('Ymd');
-        $latestPatient = self::where('no_rm', 'like', 'RM' . $date . '%')->latest()->first();
-        $latestNoRm = $latestPatient ? substr($latestPatient->no_rm, -3) : 0;
-        $newNoRm = str_pad($latestNoRm + 1, 3, '0', STR_PAD_LEFT);
-        $this->attributes['no_rm'] = 'RM' . $date . $newNoRm;
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->no_rm = 'RM' . date('Ymd') . str_pad(static::count() + 1, 4, '0', STR_PAD_LEFT);
+        });
+
+        static::updating(function ($model) {
+            if ($model->isDirty('nama') || $model->isDirty('tanggal_lahir')) {
+                $model->no_rm = 'RM' . date('Ymd') . str_pad(static::count() + 1, 4, '0', STR_PAD_LEFT);
+            }
+        });
     }
 }

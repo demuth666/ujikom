@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         //Rekam Medis 
         Route::get('RekamMedis', [RekamController::class, 'index'])->name('rekam.medis');
+        Route::get('RekamMedis/Search', [RekamController::class, 'search'])->name('rekam.medis.search');
         Route::get('RekamMedis/add', [RekamController::class, 'create'])->name('rekam.medis.add');
         Route::post('RekamMedis/store', [RekamController::class, 'store'])->name('rekam.medis.store');
         Route::get('RekamMedis/edit/{id}', [RekamController::class, 'edit'])->name('rekam.medis.edit');
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/RekamMedis/{id}', [RekamController::class, 'destroy'])->name('destroy.rekam.medis');
         //Dokter Controller
         Route::get('Dokter', [DokterController::class, 'index'])->name('dokter');
+        Route::get('Dokter/Search', [DokterController::class, 'search'])->name('search.dokter');
         Route::get('Dokter/add', [DokterController::class, 'create'])->name('add.dokter');
         Route::post('Dokter/store', [DokterController::class, 'store'])->name('store.dokter');
         Route::get('/Dokter/edit/{id}', [DokterController::class, 'edit'])->name('edit.dokter');
@@ -47,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Dokter/{id}', [DokterController::class, 'destroy'])->name('destroy.dokter');
         //Pasien Controller
         Route::get('Pasien', [PasienController::class, 'index'])->name('pasien');
+        Route::get('Pasien/Search', [PasienController::class, 'search'])->name('search.pasien');
         Route::get('Pasien/add', [PasienController::class, 'create'])->name('add.pasien');
         Route::post('Pasien/store', [PasienController::class, 'store'])->name('store.pasien');
         Route::get('Pasien/edit/{id}', [PasienController::class, 'edit'])->name('edit.pasien');
@@ -54,6 +57,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Pasien/{id}', [PasienController::class, 'destroy'])->name('destroy.pasien');
         //Tindakan Controller
         Route::get('Tindakan', [TindakanController::class, 'index'])->name('tindakan');
+        Route::get('Tindakan/Search', [TindakanController::class, 'search'])->name('search.tindakan');
         Route::get('Tindakan/add', [TindakanController::class, 'create'])->name('add.tindakan');
         Route::post('Tindakan/store', [TindakanController::class, 'store'])->name('store.tindakan');
         Route::get('Tindakan/edit/{id}/', [TindakanController::class, 'edit'])->name('edit.tindakan');
@@ -61,6 +65,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Tindakan/{id}', [TindakanController::class, 'destroy'])->name('destroy.tindakan');
         //Obat Controller
         Route::get('Obat', [ObatController::class, 'index'])->name('obat');
+        Route::get('Obat/Search', [ObatController::class, 'search'])->name('search.obat');
         Route::get('Obat/add', [ObatController::class, 'create'])->name('add.obat');
         Route::post('Obat/store', [ObatController::class, 'store'])->name('store.obat');
         Route::get('Obat/edit/{id}', [ObatController::class, 'edit'])->name('edit.obat');

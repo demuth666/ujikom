@@ -12,6 +12,31 @@ use App\Models\Lab;
 
 class RekamController extends Controller
 {
+    public function search(Request $request)
+    {
+        $input = $request->input('data');
+        $result = RekamMedis::whereHas('labotarium', function ($query) use ($input){
+            $query->where('no_rm', 'like', '%'.$input.'%');
+        })->orWhereHas('tindakan', function ($query) use ($input){
+            $query->where('nm_tindakan', 'like', '%'.$input.'%');
+        })
+        ->orWhereHas('dokter', function ($query) use ($input){
+            $query->where('nama_dokter', 'like', '%'.$input.'%');
+        })
+        ->orWhereHas('pasien', function ($query) use ($input){
+            $query->where('nama_pasien', 'like', '%'.$input.'%');
+        })
+        ->orWhere('obat_id', 'like', '%'.$input.'%')
+        ->orWhere('diagnosa', 'like', '%'.$input.'%')
+        ->orWhere('resep', 'like', '%'.$input.'%')
+        ->orWhere('keluhan', 'like', '%'.$input.'%')
+        ->orWhere('ket', 'like', '%'.$input.'%')
+        ->get();
+        return view('admin.pages.Rekam-Medis.index', [
+            'rekam' => $result
+        ]);
+    }
+
     public function index()
     {
         $rekam = RekamMedis::with('labotarium', 'pasien', 'tindakan', 'obat', 'dokter')->paginate(10);

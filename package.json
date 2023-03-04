@@ -13,6 +13,6 @@
     },
     "dependencies": {
         "summernote": "^0.8.20",
-        "sweetalert2": "^11.7.2"
+        "sweetalert2": "^11.7.3"
     }
 }

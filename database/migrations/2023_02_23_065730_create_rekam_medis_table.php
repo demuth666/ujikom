@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('rekam_medis', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->varhcar('labotarium_id');
-            $table->varhcar('tindakan_id');
-            $table->varhcar('obat_id');
-            $table->varhcar('dokter_id');
-            $table->varhcar('pasien_id');
+            $table->string('labotarium_id');
+            $table->string('tindakan_id');
+            $table->string('obat_id');
+            $table->string('dokter_id');
+            $table->string('pasien_id');
             $table->string('diagnosa');
             $table->string('resep');
             $table->string('keluhan');
