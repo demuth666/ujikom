@@ -7,6 +7,19 @@ use App\Models\Lab;
 
 class LabController extends Controller
 {
+    public function search(Request $request)
+    {
+        $input = $request->input('data');
+            $results = Lab::where('no_rm', 'like', '%'.$input.'%')
+            ->orWhere('hasil_lab', 'like', '%'.$input.'%')
+            ->orWhere('ket', 'like', '%'.$input.'%')
+            ->get();
+
+        return view('admin.pages.Lab.index', [
+            'lab' => $results
+        ]);
+    }
+
     public function index()
     {
         $lab = Lab::all();
@@ -23,7 +36,6 @@ class LabController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'no_rm' => ['required', 'integer'],
             'hasil_lab' => ['required', 'string'],
             'ket' => ['required', 'string'],
         ]);

@@ -17,4 +17,9 @@ class Obat extends Model
     ];
 
     protected $guarded = [];
+
+    public function rekammedis()
+    {
+        return $this->hasMany(RekamMedis::class);
+    }
 }

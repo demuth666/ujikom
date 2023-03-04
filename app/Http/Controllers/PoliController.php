@@ -7,6 +7,18 @@ use App\Models\Poli;
 
 class PoliController extends Controller
 {
+    public function search(Request $request)
+    {
+        $input = $request->input('data');
+        $results = Poli::where('nama_poli', 'like', '%'.$input.'%')
+        ->orWhere('lantai', 'like', '%'.$input.'%')
+        ->get();
+
+         return view('admin.pages.Poli.index', [
+            'poli' => $results
+    ]);
+    }
+
     public function index()
     {
         $poli = Poli::all();

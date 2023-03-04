@@ -14,12 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('rekam_medis', function (Blueprint $table) {
-            $table->id();
-            $table->integer('rm_id');
-            $table->integer('tindakan_id');
-            $table->integer('obat_id');
-            $table->integer('user_id');
-            $table->integer('pasien_id');
+            $table->uuid('id')->primary();
+            $table->varhcar('labotarium_id');
+            $table->varhcar('tindakan_id');
+            $table->varhcar('obat_id');
+            $table->varhcar('dokter_id');
+            $table->varhcar('pasien_id');
             $table->string('diagnosa');
             $table->string('resep');
             $table->string('keluhan');

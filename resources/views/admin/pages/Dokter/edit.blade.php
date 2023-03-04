@@ -11,9 +11,10 @@
 
                         <div class="input-field">
                             <label>Poli</label>
-                            <select name="poli_id" required>
+                            <select name="poli_id" class="pilih" required>
                                 @foreach ($poli as $poli)
-                                    <option value="{{ $poli->id }}">{{ $poli->nama_poli }}</option>
+                                    <option value="{{ $poli->id }}" {{ $poli->id == $poli->id ? 'selected' : '' }}>
+                                        {{ $poli->nama_poli }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -26,5 +26,10 @@ class Poli extends Model
         return $this->hasMany(Kunjungan::class);
     }
 
+    public function rekammedis()
+    {
+        return $this->hasMany(RekamMedis::class);
+    }
+
     protected $guarded = [];
 }

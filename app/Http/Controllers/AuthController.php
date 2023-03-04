@@ -11,9 +11,9 @@ class AuthController extends Controller
     public function index()
     {
         if ($user = Auth::user()) {
-            if ($user->kd_user == 'admin') {
+            if ($user->user_id == 'admin') {
                 return redirect()->intended('RekamMedis');
-            } //elseif ($user->kd_user == 'editor') {
+            } //elseif ($user->user_id == 'editor') {
                 //return redirect()->intended('editor');
             //}
         }
@@ -32,9 +32,9 @@ class AuthController extends Controller
 
             if (Auth::attempt($kredensil)) {
                 $user = Auth::user();
-                if ($user->kd_user == 'admin') {
+                if ($user->user_id == 'admin') {
                     return redirect()->intended('RekamMedis');
-                } //elseif ($user->kd_user == 'editor') {
+                } //elseif ($user->user_id == 'editor') {
                     //return redirect()->intended('editor');
                 //}
                 return redirect()->intended('/');

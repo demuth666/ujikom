@@ -17,28 +17,28 @@
             <table>
                 <thead>
                     <tr>
-                        <th> Poli</th>
-                        <th> Tanggal Kunjungan</th>
-                        <th> Kd User</th>
                         <th> Nama Dokter</th>
+                        <th> Poli</th>
                         <th> SIP</th>
+                        <th> Tanggal Kunjungan</th>
                         <th> Tempat Lahir</th>
                         <th> No Telp</th>
                         <th> Alamat</th>
+                        <th> Kd User</th>
                         <th> Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($dokter as $dokter)
                         <tr>
-                            <td><strong> {{ $dokter->poli['nama_poli'] }}</strong></td>
-                            <td> {{ $dokter->tgl_kunjungan }} </td>
-                            <td> {{ $dokter->user_id }} </td>
                             <td> {{ $dokter->nama_dokter }} </td>
+                            <td><strong> {{ $dokter->poli['nama_poli'] }}</strong></td>
                             <td> {{ $dokter->sip }} </td>
+                            <td> {{ $dokter->tgl_kunjungan }} </td>
                             <td> {{ $dokter->tempat_lahir }} </td>
                             <td> {{ $dokter->no_tlp }} </td>
                             <td> {{ $dokter->alamat }} </td>
+                            <td> {{ $dokter->user_id }} </td>
                             <td>
                                 <div class="button-action">
                                     <a href={{ route('edit.dokter', $dokter->id) }}>

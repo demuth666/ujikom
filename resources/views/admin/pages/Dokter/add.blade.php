@@ -47,8 +47,6 @@
 
 
                 <div class="fields">
-
-
                     <div class="input-field">
                         <label>No Telp</label>
                         <input type="number" name="no_tlp" required>

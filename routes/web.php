@@ -33,6 +33,11 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         //Rekam Medis 
         Route::get('RekamMedis', [RekamController::class, 'index'])->name('rekam.medis');
+        Route::get('RekamMedis/add', [RekamController::class, 'create'])->name('rekam.medis.add');
+        Route::post('RekamMedis/store', [RekamController::class, 'store'])->name('rekam.medis.store');
+        Route::get('RekamMedis/edit/{id}', [RekamController::class, 'edit'])->name('rekam.medis.edit');
+        Route::put('RekamMedis/update/{id}', [RekamController::class, 'update'])->name('rekam.medis.update');
+        Route::delete('/RekamMedis/{id}', [RekamController::class, 'destroy'])->name('destroy.rekam.medis');
         //Dokter Controller
         Route::get('Dokter', [DokterController::class, 'index'])->name('dokter');
         Route::get('Dokter/add', [DokterController::class, 'create'])->name('add.dokter');
@@ -63,6 +68,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Obat/{id}', [ObatController::class, 'destroy'])->name('destroy.obat');
         //Poli Controller
         Route::get('Poli', [PoliController::class, 'index'])->name('poli');
+        Route::get('Poli/Search', [PoliController::class, 'search'])->name('search.poli');
         Route::get('Poli/add', [PoliController::class, 'create'])->name('add.poli');
         Route::post('Poli/store', [PoliController::class, 'store'])->name('store.poli');
         Route::get('Poli/edit/{id}', [PoliController::class, 'edit'])->name('edit.poli');
@@ -70,14 +76,15 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Poli/{id}', [PoliController::class, 'destroy'])->name('destroy.poli');
         //Lab Controller
         Route::get('Lab', [LabController::class, 'index'])->name('lab');
+        Route::get('Lab/Search', [LabController::class, 'search'])->name('search.lab');
         Route::get('Lab/add', [LabController::class, 'create'])->name('add.lab');
         Route::post('Lab/store', [LabController::class, 'store'])->name('store.lab');
         Route::get('Lab/edit/{id}', [LabController::class, 'edit'])->name('edit.lab');
         Route::put('Lab/update/{id}', [LabController::class, 'update'])->name('update.lab');
         Route::delete('/Lab/{id}', [LabController::class, 'destroy'])->name('destroy.lab');
         //Kunjungan Controller
-        Route::get('Kunjungan/Search', [KunjunganController::class, 'search'])->name('search.kunjungan');
         Route::get('Kunjungan', [KunjunganController::class, 'index'])->name('kunjungan');
+        Route::get('Kunjungan/Search', [KunjunganController::class, 'search'])->name('search.kunjungan');
         Route::get('Kunjungan/add', [KunjunganController::class, 'create'])->name('add.kunjungan');
         Route::post('Kunjungan/store', [KunjunganController::class, 'store'])->name('store.kunjungan');
         Route::get('Kunjungan/edit/{id}', [KunjunganController::class, 'edit'])->name('edit.kunjungan');

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tindakan', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('nama_tindakan');
+            $table->string('nm_tindakan');
             $table->string('ket');
             $table->timestamps();
         });
