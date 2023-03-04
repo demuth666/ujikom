@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('kunjungan', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->date('tgl_kunjungan');
-            $table->varchar('pasien_id');
-            $table->varchar('poli_id');
+            $table->string('pasien_id');
+            $table->string('poli_id');
             $table->time('jam_kunjungan');
             $table->timestamps();
         });

@@ -62,6 +62,9 @@
                 <p>Data tidak ditemukan</p>
                 @endif
             </table>
+        @else
+            <p>Data tidak ditemukan</p>
+            @endif
         </section>
     </main>
 @endsection

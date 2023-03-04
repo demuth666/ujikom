@@ -56,7 +56,9 @@ class LabController extends Controller
     public function update($id, Request $request)
     {
        $lab = Lab::findOrFail($id);
-       $lab->update($request->except(['_token']));
+       $lab->hasil_lab = $request->hasil_lab;
+       $lab->ket = $request->ket;
+       $lab->save();
         return redirect('/Lab')->with('toast_success', 'Data berhasil di edit!');
     }
 

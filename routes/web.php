@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         //Rekam Medis 
         Route::get('RekamMedis', [RekamController::class, 'index'])->name('rekam.medis');
+        Route::get('RekamMedis/Search', [RekamController::class, 'search'])->name('rekam.medis.search');
         Route::get('RekamMedis/add', [RekamController::class, 'create'])->name('rekam.medis.add');
         Route::post('RekamMedis/store', [RekamController::class, 'store'])->name('rekam.medis.store');
         Route::get('RekamMedis/edit/{id}', [RekamController::class, 'edit'])->name('rekam.medis.edit');
@@ -40,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/RekamMedis/{id}', [RekamController::class, 'destroy'])->name('destroy.rekam.medis');
         //Dokter Controller
         Route::get('Dokter', [DokterController::class, 'index'])->name('dokter');
+        Route::get('Dokter/Search', [DokterController::class, 'search'])->name('search.dokter');
         Route::get('Dokter/add', [DokterController::class, 'create'])->name('add.dokter');
         Route::post('Dokter/store', [DokterController::class, 'store'])->name('store.dokter');
         Route::get('/Dokter/edit/{id}', [DokterController::class, 'edit'])->name('edit.dokter');

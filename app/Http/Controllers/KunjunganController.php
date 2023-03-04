@@ -22,8 +22,6 @@ class KunjunganController extends Controller
         return view('admin.pages.Kunjungan.index', [
             'kunjungan' => $kunjungan
         ]);
-
-        
     }
 
     public function index(Request $request)
