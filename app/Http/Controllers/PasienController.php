@@ -10,19 +10,19 @@ class PasienController extends Controller
     public function search(Request $request)
     {
         $input = $request->input('data');
-        $results = Pasien::where('nama_pasien', 'like', '%'.$input.'%')
-        ->orWhere('j_kelamin', 'like', '%'.$input.'%')
-        ->orWhere('agama', 'like', '%'.$input.'%')
-        ->orWhere('alamat', 'like', '%'.$input.'%')
-        ->orWhere('usia', 'like', '%'.$input.'%')
-        ->orWhere('no_tlp', 'like', '%'.$input.'%')
-        ->orWhere('nm_kk', 'like', '%'.$input.'%')
-        ->orWhere('hub_kel', 'like', '%'.$input.'%')
-        ->get();
+            $results = Pasien::where('nama_pasien', 'like', '%'.$input.'%')
+            ->orWhere('j_kelamin', 'like', '%'.$input.'%')
+            ->orWhere('agama', 'like', '%'.$input.'%')
+            ->orWhere('alamat', 'like', '%'.$input.'%')
+            ->orWhere('usia', 'like', '%'.$input.'%')
+            ->orWhere('no_tlp', 'like', '%'.$input.'%')
+            ->orWhere('nm_kk', 'like', '%'.$input.'%')
+            ->orWhere('hub_kel', 'like', '%'.$input.'%')
+            ->get();
 
-         return view('admin.pages.Pasien.index', [
+        return view('admin.pages.Pasien.index', [
             'pasien' => $results
-    ]);
+        ]);
     }
 
     public function index()

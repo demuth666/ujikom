@@ -13,13 +13,12 @@ class ObatController extends Controller
             $results = Obat::where('nama_obat', 'like', '%'.$input.'%')
             ->orWhere('jml_obat', 'like', '%'.$input.'%')
             ->orWhere('ukuran', 'like', '%'.$input.'%')
-            ->orWhere('harga', 'like', '%'.$input.'%')
             ->get();
 
         return view('admin.pages.Obat.index', [
             'obat' => $results
         ]);
-    } 
+    }
 
     public function index()
     {

@@ -10,13 +10,13 @@ class TindakanController extends Controller
     public function search(Request $request)
     {
         $input = $request->input('data');
-        $results = Tindakan::where('nm_tindakan', 'like', '%'.$input.'%')
-        ->orWhere('ket', 'like', '%'.$input.'%')
-        ->get();
+            $results = Tindakan::where('nm_tindakan', 'like', '%'.$input.'%')
+            ->orWhere('ket', 'like', '%'.$input.'%')
+            ->get();
 
-         return view('admin.pages.Tindakan.index', [
+        return view('admin.pages.Tindakan.index', [
             'tindakan' => $results
-    ]);
+        ]);
     }
 
     public function index()
