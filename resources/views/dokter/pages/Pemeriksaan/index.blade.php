@@ -8,11 +8,6 @@
                 <ion-icon name="search-outline"></ion-icon>
             </form>
         </section>
-        <div class="add">
-            <a href={{ route('add.pasien') }}>
-                <button class="button-create" role="button">Tambah</button>
-            </a>
-        </div>
         <section class="table__body">
             <table>
                 <thead>
@@ -24,9 +19,6 @@
                         <th> Alamat</th>
                         <th> Tanggal Lahir</th>
                         <th> usia</th>
-                        <th> No Telp</th>
-                        <th> Nama KK</th>
-                        <th> Hub keluarga</th>
                         <th> Aksi</th>
                     </tr>
                 </thead>
@@ -41,24 +33,10 @@
                                 <td> {{ $pasien->alamat }} </td>
                                 <td> {{ $pasien->tgl_lahir }} </td>
                                 <td> {{ $pasien->usia }} </td>
-                                <td> {{ $pasien->no_tlp }} </td>
-                                <td> {{ $pasien->nm_kk }} </td>
-                                <td> {{ $pasien->hub_kel }} </td>
                                 <td>
                                     <div class="button-action">
-                                        <a href={{ route('edit.pasien', $pasien->id) }}>
-                                            <button class="button-edit" role="button">Edit</button>
-                                        </a>
-
-                                        <form action={{ route('destroy.pasien', $pasien->id) }} id="delete-form"
-                                            method="POST">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="button-delete" role="button">Hapus</button>
-                                        </form>
-
-                                        <a href={{ route('print.pasien', $pasien->id) }}>
-                                            <button class="button-cetak" role="button">Cetak</button>
+                                        <a href={{ route('add.pemeriksaan', $pasien->id) }}>
+                                            <button class="button-edit" role="button">Tambah Pemeriksaan</button>
                                         </a>
                                     </div>
                                 </td>

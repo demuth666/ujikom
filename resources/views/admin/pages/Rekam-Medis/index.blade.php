@@ -8,25 +8,24 @@
                 <ion-icon name="search-outline"></ion-icon>
             </form>
         </section>
-        <div class="add">
+        {{-- <div class="add">
             <a href="{{ route('rekam.medis.add') }}">
                 <button class="button-create" role="button">Tambah</button>
             </a>
-        </div>
+        </div> --}}
         <section class="table__body">
             <table>
                 <thead>
                     <tr>
                         <th> No Rekam Medis</th>
-                        <th> Tindakan</th>
-                        <th> Obat</th>
-                        <th> Dokter</th>
                         <th> Pasien</th>
-                        <th> Diagnosa</th>
-                        <th> Resep</th>
+                        <th> Dokter</th>
+                        <th> Tindakan</th>
                         <th> Keluhan</th>
+                        <th> Diagnosa</th>
+                        <th> Obat</th>
+                        <th> Resep</th>
                         <th> Tanggal Pemeriksaan</th>
-                        <th> Keterangan</th>
                         <th>
                             Aksi
                         </th>
@@ -36,16 +35,15 @@
                     @if (count($rekam))
                         @foreach ($rekam as $rekam)
                             <tr>
-                                <td> {{ $rekam->labotarium['no_rm'] }} </td>
+                                <td> {{ $rekam->pasien['no_rm'] }} </td>
+                                <td> {{ $rekam->pasiens }} </td>
+                                <td> {{ $rekam->dokter }} </td>
                                 <td> {{ $rekam->tindakan['nm_tindakan'] }} </td>
-                                <td> {{ $rekam->obat_id }} </td>
-                                <td> {{ $rekam->dokter['nama_dokter'] }} </td>
-                                <td> {{ $rekam->pasien['nama_pasien'] }} </td>
-                                <td> {{ $rekam->diagnosa }} </td>
-                                <td> {{ $rekam->resep }} </td>
                                 <td> {{ $rekam->keluhan }} </td>
+                                <td> {{ $rekam->diagnosa }} </td>
+                                <td> {{ $rekam->obat }} </td>
+                                <td> {{ $rekam->resep }} </td>
                                 <td> {{ $rekam->tgl_pemeriksaan }} </td>
-                                <td> {{ $rekam->ket }} </td>
                                 <td>
                                     <div class="button-action">
                                         <a href="{{ route('rekam.medis.edit', $rekam->id) }}">

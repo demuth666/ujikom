@@ -13,8 +13,8 @@ class RekamMedis extends Model
     protected $table = 'rekam_medis';
 
     protected $fillable = [
-        'labotarium_id', 'tindakan_id', 'obat_id', 'dokter_id', 'pasien_id', 'diagnosa', 'resep',
-        'keluhan', 'tgl_pemeriksaan', 'ket'
+        'pasien_id', 'tindakan_id', 'obat', 'dokter', 'pasiens', 'diagnosa', 'resep',
+        'keluhan', 'tgl_pemeriksaan',
     ];
 
     protected $guarded = [];

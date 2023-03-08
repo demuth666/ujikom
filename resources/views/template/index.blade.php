@@ -32,11 +32,15 @@
     <script src={{ asset('js/script.js') }}></script>
     <script>
         $(document).ready(function() {
-            $('.pilih').select2();
+            $('.pilih').select2({
+
+            });
         });
 
         $(document).ready(function() {
-            $('.pilih2').select2();
+            $('.pilih2').select2({
+                placeholder: "Silahkan Pilih",
+            });
         });
     </script>
     <script>
@@ -54,6 +58,25 @@
                     $(this).unbind('submit').submit();
                 }
             })
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#lab_id').on('change', function() {
+                var id = $(this).val();
+                if (id) {
+                    $.ajax({
+                        url: '/get-user-data/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#pasien').val(data.nama);
+                        }
+                    });
+                } else {
+                    $('#pasien').val('');
+                }
+            });
         });
     </script>
 </body>

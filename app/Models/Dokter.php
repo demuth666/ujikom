@@ -13,8 +13,8 @@ class Dokter extends Model
     protected $table = 'dokter';
 
     protected $fillable = [
-        'poli_id', 'tgl_kunjungan', 'user_id', 'nama_dokter', 'sip', 'tempat_lahir', 'no_tlp',
-        'alamat'
+        'poli_id', 'tgl_kunjungan', 'nama_dokter', 'sip', 'tempat_lahir', 'no_tlp',
+        'alamat', 'password'
     ];
 
     public function poli()

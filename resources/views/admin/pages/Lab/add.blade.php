@@ -8,22 +8,16 @@
                 <div class="details-personal">
                     <div class="fields">
                         <div class="input-field">
-                            <label>Hasil Lab</label>
-                            <input type="text" name="hasil_lab" required>
+                            <label>No Rekam Medis</label>
+                            <select name="no_rm" class="pilih" required>
+                                @foreach ($pasien as $pasien)
+                                    <option value="{{ $pasien->no_rm }}" required>{{ $pasien->no_rm }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="input-field">
-                            <input type="hidden" name="no_rm">
-                        </div>
-                    </div>
-                </div>
-                <div class="details-id">
-                    <div class="fields">
-                        <div class="input-field">
-                            <label>Keterangan</label>
-                            <input type="text" name="ket" required>
-                        </div>
-                    </div>
+                            <div class="input-field"
                     <button class="nextBtn">
                         <span class="btnText">Simpan</span>
                     </button>

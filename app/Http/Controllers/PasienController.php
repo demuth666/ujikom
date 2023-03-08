@@ -4,9 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasien;
+use Dompdf\Dompdf;
+
 
 class PasienController extends Controller
 {
+
+    public function generatePDF($id) {
+        $pasien = Pasien::where('id', $id)->get();    
+        $pdf = new Dompdf();
+        $pdf->loadHtml(view('admin.pages.Pasien.cetak', [
+            // 'data' => $data,
+            'pasien' => $pasien
+        ])); 
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->render();
+    
+        return $pdf->stream('dokumen.pdf'); 
+    }
+
     public function search(Request $request)
     {
         $input = $request->input('data');

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Dokter;
 use App\Models\Poli;
+use App\Models\User;
 Use Alert;
+use Illuminate\Support\Facades\Hash;
 
 
 class DokterController extends Controller
@@ -48,7 +50,6 @@ class DokterController extends Controller
         $request->validate([
             'poli_id' => ['required', 'string'],
             'tgl_kunjungan' => ['required', 'date'],
-            'user_id' => ['required', 'integer'],
             'nama_dokter' => ['required', 'string', 'max:255'],
             'sip' => ['required', 'integer'],
             'tempat_lahir' => ['required', 'string', 'max:255'],
@@ -56,7 +57,23 @@ class DokterController extends Controller
             'alamat' => ['required', 'string'],
         ]);
 
-        Dokter::create($request->all());
+       $dokter = new Dokter();
+       $dokter->poli_id = $request->input('poli_id');
+       $dokter->tgl_kunjungan = $request->input('tgl_kunjungan');
+       $dokter->nama_dokter = $request->input('nama_dokter');
+       $dokter->sip = $request->input('sip');
+       $dokter->tempat_lahir = $request->input('tempat_lahir');
+       $dokter->no_tlp = $request->input('no_tlp');
+       $dokter->alamat = $request->input('alamat');
+       $dokter->password = Hash::make($request->input('password'));
+       $dokter->save();
+
+       $user = new User();
+       $user->user_id = 'dokter';
+       $user->username = $dokter->nama_dokter;
+       $user->password = Hash::make($request->input('password'));
+       $user->save();
+
         return redirect('/Dokter')->with('toast_success', 'Data berhasil tersimpan!');
     }
 

@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-form">
         <header>Tambah Rekam Medis</header>
-        <form action={{ route('rekam.medis.store') }} method="POST">
+        <form action={{ route('store.pemeriksaan') }} method="POST">
             @csrf
             <div class="form-first">
                 <div class="details-personal">
@@ -10,26 +10,20 @@
 
                         <div class="input-field">
                             <label>No Rekam Medis</label>
-                            <select name="pasien_id" id="lab_id" class="pilih" required>
-                                @foreach ($lab as $lab)
-                                    <option value="{{ $lab->id }}" required>{{ $lab->no_rm }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" value="{{ $pasien->no_rm }}" disabled>
+                            <input type="hidden" name="pasien_id" value="{{ $pasien->id }}">
                         </div>
 
                         <div class="input-field">
                             <label>Pasien</label>
-                            <input type="text" name="pasiens" id="pasien">
+                            <input type="text" value="{{ $pasien->nama_pasien }}" id="pasien" disabled>
+                            <input type="hidden" name="pasiens" value="{{ $pasien->nama_pasien }}" id="pasien">
                         </div>
 
                         <div class="input-field">
                             <label>Dokter</label>
-                            <select name="dokter_id" class="pilih" required>
-                                <option>Pilih Dokter</option>
-                                @foreach ($dokter as $dokter)
-                                    <option value="{{ $dokter->id }}" required>{{ $dokter->nama_dokter }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" value="{{ Auth::user()->username }}" disabled>
+                            <input type="hidden" name="dokter" value="{{ Auth::user()->username }}">
                         </div>
 
                         <div class="input-field">
