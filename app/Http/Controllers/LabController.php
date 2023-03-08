@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Lab;
+use App\Models\Pasien;
 
 class LabController extends Controller
 {
@@ -30,12 +31,16 @@ class LabController extends Controller
 
     public function create()
     {
-        return view('admin.pages.Lab.add');
+        $pasien = Pasien::all();
+        return view('admin.pages.Lab.add', [
+            'pasien' => $pasien
+        ]);
     }
 
     public function store(Request $request)
     {
         $request->validate([
+            'no_rm' => ['required', 'string'],
             'hasil_lab' => ['required', 'string'],
             'ket' => ['required', 'string'],
         ]);
@@ -47,15 +52,17 @@ class LabController extends Controller
     public function edit($id)
     {
         $lab = Lab::findOrFail($id);
-        
+        $pasien = Pasien::all();
         return view('admin.pages.Lab.edit', [
-            'lab' => $lab
+            'lab' => $lab,
+            'pasien' => $pasien
         ]);
     }
     
     public function update($id, Request $request)
     {
        $lab = Lab::findOrFail($id);
+       $lab->no_rm = $request->no_rm;
        $lab->hasil_lab = $request->hasil_lab;
        $lab->ket = $request->ket;
        $lab->save();

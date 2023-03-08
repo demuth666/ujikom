@@ -11,7 +11,7 @@
 
                         <div class="input-field">
                             <label>No Rekam Medis</label>
-                            <select name="labotarium_id" class="pilih" required>
+                            <select name="labotarium_id" class="pilih" required disabled>
                                 @foreach ($lab as $lab)
                                     <option value="{{ $lab->id }}" {{ $lab->id == $lab->id ? 'selected' : '' }}
                                         required>{{ $lab->no_rm }}</option>

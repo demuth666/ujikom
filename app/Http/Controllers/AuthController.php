@@ -13,9 +13,9 @@ class AuthController extends Controller
         if ($user = Auth::user()) {
             if ($user->user_id == 'admin') {
                 return redirect()->intended('RekamMedis');
-            } //elseif ($user->user_id == 'editor') {
-                //return redirect()->intended('editor');
-            //}
+            } elseif ($user->user_id == 'dokter') {
+                return redirect()->intended('Pemeriksaan');
+            }
         }
         return view('auth.login');
     }
@@ -34,9 +34,9 @@ class AuthController extends Controller
                 $user = Auth::user();
                 if ($user->user_id == 'admin') {
                     return redirect()->intended('RekamMedis');
-                } //elseif ($user->user_id == 'editor') {
-                    //return redirect()->intended('editor');
-                //}
+                } elseif ($user->user_id == 'dokter') {
+                    return redirect()->intended('Pemeriksaan');
+                }
                 return redirect()->intended('/');
             }
 
