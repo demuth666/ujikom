@@ -10,7 +10,11 @@
         </section>
         <div class="add">
             <a href={{ route('add.dokter') }}>
-                <button class="button-create" role="button">Tambah</button>
+                <button class="button-add" role="button" type="submit">
+                    <span class="button__icon">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                    </span>
+                </button>
             </a>
         </div>
         <section class="table__body">
@@ -43,13 +47,21 @@
                                 <td>
                                     <div class="button-action">
                                         <a href={{ route('edit.dokter', $dokter->id) }}>
-                                            <button class="button-edit" role="button">Edit</button>
+                                            <button type="button" class="button-edit">
+                                                <span class="button__icon">
+                                                    <ion-icon name="create-outline"></ion-icon>
+                                                </span>
+                                            </button>
                                         </a>
                                         <form action="{{ route('destroy.dokter', $dokter->id) }}" id="delete-form"
                                             method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button class="button-delete" role="button">Hapus</button>
+                                            <button class="button-delete" role="button" type="submit">
+                                                <span class="button__icon">
+                                                    <ion-icon name="trash-outline"></ion-icon>
+                                                </span>
+                                            </button>
                                         </form>
                                     </div>
                                 </td>

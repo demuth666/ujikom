@@ -1,6 +1,12 @@
  <div class="container">
      <ul class="link-items">
          <li class="link-item">
+             <a href="#" class="link">
+                 <ion-icon name="grid-outline"></ion-icon>
+                 <span style="--i: 6">Dashboard</span>
+             </a>
+         </li>
+         <li class="link-item">
              @if (Auth::user()->user_id == 'admin')
                  <a href={{ route('rekam.medis') }} class="link">
                      <ion-icon name="book-outline"></ion-icon>
@@ -52,12 +58,6 @@
                  <a href="{{ route('kunjungan') }}" class="link">
                      <ion-icon name="stopwatch-outline"></ion-icon>
                      <span style="--i: 7">Kunjungan</span>
-                 </a>
-             </li>
-             <li class="link-item">
-                 <a href="#" class="link">
-                     <ion-icon name="stats-chart-outline"></ion-icon>
-                     <span style="--i: 6">Laporan</span>
                  </a>
              </li>
          @endif

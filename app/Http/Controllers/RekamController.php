@@ -9,9 +9,24 @@ use App\Models\Obat;
 use App\Models\Dokter;
 use App\Models\Pasien;
 use App\Models\Lab;
+use Dompdf\Dompdf;
+use FPDF;
 
 class RekamController extends Controller
 {
+    public function cetak()
+    {
+        $rekam = RekamMedis::all();
+        $pdf = new Dompdf();
+        $pdf->loadHtml(view('admin.pages.Rekam-Medis.cetak', [
+            'rekam' => $rekam
+        ])); 
+        $pdf->setPaper('A', 'landscape');
+        $pdf->render();
+    
+        return $pdf->stream('RekamMedis.pdf'); 
+    }
+
     public function search(Request $request)
     {
         $input = $request->input('data');
@@ -117,7 +132,6 @@ class RekamController extends Controller
         $post = RekamMedis::findOrFail($id);
         $obat = implode(',', $request->input('obat'));
         $request->validate([
-            'pasien_id' => ['required'],
             'tindakan_id' => ['required'],
             'obat' => ['required'],
             'dokter' => ['required'],
@@ -128,7 +142,7 @@ class RekamController extends Controller
             'tgl_pemeriksaan' => ['required'],
         ]);
 
-        $post->pasien_id = $request->pasien_id;
+        // $post->pasien_id = $request->pasien_id;
         $post->tindakan_id = $request->tindakan_id;
         $post->obat = $obat;
         $post->dokter = $request->dokter;

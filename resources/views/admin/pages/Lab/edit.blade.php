@@ -19,12 +19,12 @@
 
                         <div class="input-field">
                             <label>Hasil Lab</label>
-                            <input type="text" name="hasil_lab" required>
+                            <input type="text" name="hasil_lab" value="{{ $lab->hasil_lab }}" required>
                         </div>
 
                         <div class="input-field">
                             <label>Keterangan</label>
-                            <input type="text" name="ket" required>
+                            <input type="text" name="ket" value="{{ $lab->ket }}" required>
                         </div>
 
                     </div>

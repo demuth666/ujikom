@@ -8,11 +8,14 @@
                 <ion-icon name="search-outline"></ion-icon>
             </form>
         </section>
-        {{-- <div class="add">
-            <a href="{{ route('rekam.medis.add') }}">
-                <button class="button-create" role="button">Tambah</button>
-            </a>
-        </div> --}}
+        <a href="{{ route('rekam.medis.cetak') }}">
+            <button type="button" class="button">
+                <span class="button__text">Cetak</span>
+                <span class="button__icon">
+                    <ion-icon name="print-outline"></ion-icon>
+                </span>
+            </button>
+        </a>
         <section class="table__body">
             <table>
                 <thead>
@@ -47,13 +50,21 @@
                                 <td>
                                     <div class="button-action">
                                         <a href="{{ route('rekam.medis.edit', $rekam->id) }}">
-                                            <button class="button-edit" role="button">Edit</button>
+                                            <button type="button" class="button-edit">
+                                                <span class="button__icon">
+                                                    <ion-icon name="create-outline"></ion-icon>
+                                                </span>
+                                            </button>
                                         </a>
                                         <form action="{{ route('destroy.rekam.medis', $rekam->id) }}" id="delete-form"
                                             method="POST">
                                             @csrf
                                             @method('DELETE')
-                                            <button class="button-delete" role="button" type="submit">Hapus</button>
+                                            <button class="button-delete" role="button" type="submit">
+                                                <span class="button__icon">
+                                                    <ion-icon name="trash-outline"></ion-icon>
+                                                </span>
+                                            </button>
                                         </form>
                                     </div>
                                 </td>

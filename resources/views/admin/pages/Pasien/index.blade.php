@@ -47,7 +47,11 @@
                                 <td>
                                     <div class="button-action">
                                         <a href={{ route('edit.pasien', $pasien->id) }}>
-                                            <button class="button-edit" role="button">Edit</button>
+                                            <button type="button" class="button-edit">
+                                                <span class="button__icon">
+                                                    <ion-icon name="create-outline"></ion-icon>
+                                                </span>
+                                            </button>
                                         </a>
 
                                         <form action={{ route('destroy.pasien', $pasien->id) }} id="delete-form"
@@ -57,7 +61,8 @@
                                             <button class="button-delete" role="button">Hapus</button>
                                         </form>
 
-                                        <a href={{ route('print.pasien', $pasien->id) }}>
+                                        <a
+                                            href={{ route('print.pasien', ['id' => $pasien->id, 'nama_pasien' => $pasien->nama_pasien]) }}>
                                             <button class="button-cetak" role="button">Cetak</button>
                                         </a>
                                     </div>

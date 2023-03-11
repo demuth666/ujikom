@@ -10,17 +10,17 @@ use Dompdf\Dompdf;
 class PasienController extends Controller
 {
 
-    public function generatePDF($id) {
-        $pasien = Pasien::where('id', $id)->get();    
+    public function generatePDF($id, $nama_pasien) {
+        $pasien = Pasien::where('id', $id)->get(); 
+        $nama = Pasien::where('nama_pasien', $nama_pasien);
         $pdf = new Dompdf();
         $pdf->loadHtml(view('admin.pages.Pasien.cetak', [
-            // 'data' => $data,
             'pasien' => $pasien
         ])); 
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
     
-        return $pdf->stream('dokumen.pdf'); 
+        return $pdf->stream('kartu pasien.pdf'); 
     }
 
     public function search(Request $request)
@@ -43,7 +43,7 @@ class PasienController extends Controller
 
     public function index()
     {
-        $pasien = Pasien::all();
+        $pasien = Pasien::paginate(10);
         return view('admin.pages.Pasien.index', [
             'pasien' => $pasien
         ]);

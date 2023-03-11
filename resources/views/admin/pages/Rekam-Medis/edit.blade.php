@@ -11,7 +11,7 @@
 
                         <div class="input-field">
                             <label>No Rekam Medis</label>
-                            <select name="labotarium_id" class="pilih" required disabled>
+                            <select name="pasien_id" class="pilih" required disabled>
                                 @foreach ($lab as $lab)
                                     <option value="{{ $lab->id }}" {{ $lab->id == $lab->id ? 'selected' : '' }}
                                         required>{{ $lab->no_rm }}</option>
@@ -33,30 +33,31 @@
 
                         <div class="input-field">
                             <label>Obat</label>
-                            <select name="obat_id[]" class="pilih2" multiple="multiple" required>
+                            <select name="obat[]" class="pilih2" multiple="multiple" required>
                                 @foreach ($obat as $obat)
-                                    <option value="{{ $obat->nama_obat }}" {{ $obat->id == $obat->id ? 'selected' : '' }}
-                                        required>{{ $obat->nama_obat }}</option>
+                                    <option value="{{ $obat->nama_obat }}" @selected(old('obat[]', $obat->nama_obat) == $obat->nama_obat) required>
+                                        {{ $obat->nama_obat }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="input-field">
                             <label>Dokter</label>
-                            <select name="dokter_id" class="pilih" required>
+                            <select name="dokter" class="pilih" required>
                                 @foreach ($dokter as $dokter)
-                                    <option value="{{ $dokter->id }}" {{ $dokter->id == $dokter->id ? 'selected' : '' }}
-                                        required>{{ $dokter->nama_dokter }}</option>
+                                    <option value="{{ $dokter->nama_dokter }}" @selected(old('dokter') == $dokter->id) required>
+                                        {{ $dokter->nama_dokter }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="input-field">
                             <label>Pasien</label>
-                            <select name="pasien_id" class="pilih" required>
+                            <select name="pasiens" class="pilih" required>
                                 @foreach ($pasien as $pasien)
-                                    <option value="{{ $pasien->id }}" {{ $pasien->id == $pasien->id ? 'selected' : '' }}
-                                        required>{{ $pasien->nama_pasien }}</option>
+                                    <option value="{{ $pasien->nama_pasien }}"
+                                        {{ $pasien->id == $pasien->id ? 'selected' : '' }} required>
+                                        {{ $pasien->nama_pasien }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -87,7 +88,7 @@
 
                         <div class="input-field">
                             <label>Keterangan</label>
-                            <input type="text" name="ket" value="{{ $rekam->ket }}" required>
+                            <input type="text" name="ket" value="{{ $rekam->ket }}">
                         </div>
 
                     </div>

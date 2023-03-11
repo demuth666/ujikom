@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
         //Rekam Medis 
         Route::get('RekamMedis', [RekamController::class, 'index'])->name('rekam.medis');
+        Route::get('RekamMedis/cetak', [RekamController::class, 'cetak'])->name('rekam.medis.cetak');
         Route::get('/get-user-data/{id}', [RekamController::class, 'getUserData']);
         Route::get('RekamMedis/Search', [RekamController::class, 'search'])->name('rekam.medis.search');
         Route::get('RekamMedis/add', [RekamController::class, 'create'])->name('rekam.medis.add');
@@ -52,7 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Dokter/{id}', [DokterController::class, 'destroy'])->name('destroy.dokter');
         //Pasien Controller
         Route::get('Pasien', [PasienController::class, 'index'])->name('pasien');
-        Route::get('Pasien/print/{id}', [PasienController::class, 'generatePDF'])->name('print.pasien');
+        Route::get('Pasien/print/{id}/{nama_pasien}', [PasienController::class, 'generatePDF'])->name('print.pasien');
         Route::get('Pasien/Search', [PasienController::class, 'search'])->name('search.pasien');
         Route::get('Pasien/add', [PasienController::class, 'create'])->name('add.pasien');
         Route::post('Pasien/store', [PasienController::class, 'store'])->name('store.pasien');
