@@ -25,11 +25,6 @@
                         </div>
 
                         <div class="input-field">
-                            <label>Kd User</label>
-                            <input type="text" name="user_id" value="{{ $dokter->user_id }}" required>
-                        </div>
-
-                        <div class="input-field">
                             <label>Nama Dokter</label>
                             <input type="text" name="nama_dokter" value="{{ $dokter->nama_dokter }}" required>
                         </div>
@@ -44,16 +39,16 @@
                             <input type="text" name="tempat_lahir" value="{{ $dokter->tempat_lahir }}" required>
                         </div>
 
+                        <div class="input-field">
+                            <label>No Telp</label>
+                            <input type="number" name="no_tlp" value="{{ $dokter->no_tlp }}" required>
+                        </div>
+
                     </div>
                 </div>
 
                 <div class="details-id">
                     <div class="fields">
-
-                        <div class="input-field">
-                            <label>No Telp</label>
-                            <input type="number" name="no_tlp" value="{{ $dokter->no_tlp }}" required>
-                        </div>
 
                         <div class="input-field">
                             <label>Alamat</label>
@@ -63,10 +58,10 @@
                         <div class="input-field">
                         </div>
 
-                        <button class="nextBtn">
-                            <span class="btnText">Simpan</span>
-                        </button>
                     </div>
+                    <button class="nextBtn">
+                        <span class="btnText">Simpan</span>
+                    </button>
                 </div>
         </form>
     </div>

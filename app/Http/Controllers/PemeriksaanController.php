@@ -8,14 +8,50 @@ use App\Models\RekamMedis;
 use App\Models\Tindakan;
 use App\Models\Obat;
 use App\Models\Dokter;
-
+use App\Models\CatatanRekam;
+use Dompdf\Dompdf;
 
 
 class PemeriksaanController extends Controller
 {
+    public function search(Request $request)
+    {
+        $input = $request->input('data');
+            $results = Pasien::where('nama_pasien', 'like', '%'.$input.'%')
+            ->orWhere('no_rm', 'like', '%'.$input.'%')
+            ->orWhere('j_kelamin', 'like', '%'.$input.'%')
+            ->orWhere('agama', 'like', '%'.$input.'%')
+            ->orWhere('alamat', 'like', '%'.$input.'%')
+            ->orWhere('usia', 'like', '%'.$input.'%')
+            ->orWhere('no_tlp', 'like', '%'.$input.'%')
+            ->orWhere('nm_kk', 'like', '%'.$input.'%')
+            ->orWhere('hub_kel', 'like', '%'.$input.'%')
+            ->get();
+
+        return view('dokter.pages.Pemeriksaan.index', [
+            'pasien' => $results
+        ]);
+    }
+
+    public function cetak($pasien_id)
+    {
+        $rekam = CatatanRekam::where('pasien_id', $pasien_id)->get();
+        // dd($rekam);
+        $pdf = new Dompdf();
+        $pdf->loadHtml(view('admin.pages.Rekam-Medis.cetak', [
+            'rekam' => $rekam
+        ])); 
+        $pdf->setPaper('A', 'potrait');
+        $pdf->render();
+    
+        return $pdf->stream('RekamMedis.pdf'); 
+    }
+
+
     public function index()
     {
         $pasien = Pasien::paginate(10);
+        // dd($pasien);
         return view('dokter.pages.Pemeriksaan.index', [
             'pasien' => $pasien
         ]);
@@ -39,30 +75,36 @@ class PemeriksaanController extends Controller
 
     public function store(Request $request)
     {
-        $obat = implode(',', $request->input('obat'));
         $request->validate([
             'pasien_id' => ['required'],
-            'tindakan_id' => ['required'],
-            'obat' => ['required'],
+            'tindakan' => ['required'],
             'dokter' => ['required'],
-            'pasiens' => ['required'],
             'diagnosa' => ['required'],
-            'resep' => ['required'],
             'keluhan' => ['required'],
             'tgl_pemeriksaan' => ['required'],
         ]);
 
-        RekamMedis::create([
+        $CatatanRekam = CatatanRekam::create([
             'pasien_id' => $request->pasien_id,
-            'tindakan_id' => $request->tindakan_id,
-            'obat' => $obat,
+            'tindakan' => $request->tindakan,
             'dokter' => $request->dokter,
-            'pasiens' => $request->input('pasiens'),
             'diagnosa' => $request->diagnosa,
-            'resep' => $request->resep,
             'keluhan' => $request->keluhan,
             'tgl_pemeriksaan' => $request->tgl_pemeriksaan,
         ]);
-        return redirect('/Pemeriksaan')->with('toast_success', 'Data berhasil tersimpan!');
+
+        $catatan_id = $CatatanRekam->pasien_id;
+        return redirect()->route('detail.pemeriksaan', ['pasien_id' => $catatan_id])->with('toast_success', 'Data berhasil tersimpan!');
+    }
+
+    public function detail($pasien_id)
+    {
+        $detail = CatatanRekam::where('pasien_id', $pasien_id)->get();
+        $rekam = CatatanRekam::where('pasien_id', $pasien_id)->first();
+        // dd($rekam);
+        return view('dokter.pages.Pemeriksaan.detail', [
+            'detail' => $detail,
+            'rekam' => $rekam
+        ]);
     }
 }

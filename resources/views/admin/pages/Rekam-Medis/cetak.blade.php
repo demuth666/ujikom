@@ -19,7 +19,7 @@
 
         overflow: auto;
         overflow: overlay;
-        margin-left: 75px
+        margin-left: 140webpx
     }
 
     .table__body::-webkit-scrollbar {
@@ -118,28 +118,24 @@
             <table>
                 <thead>
                     <tr>
-                        <th> No Rekam Medis</th>
+                        {{-- <th> No Rekam Medis</th> --}}
                         <th> Pasien</th>
                         <th> Dokter</th>
                         <th> Tindakan</th>
                         <th> Keluhan</th>
                         <th> Diagnosa</th>
-                        <th> Obat</th>
-                        <th> Resep</th>
                         <th> Tanggal Pemeriksaan</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($rekam as $rekam)
                         <tr>
-                            <td> {{ $rekam->pasien['no_rm'] }} </td>
-                            <td> {{ $rekam->pasiens }} </td>
+                            {{-- <td> {{ $rekam->pasien['no_rm'] }} </td> --}}
+                            <td> {{ $rekam->pasien->nama_pasien }} </td>
                             <td> {{ $rekam->dokter }} </td>
-                            <td> {{ $rekam->tindakan['nm_tindakan'] }} </td>
+                            <td> {{ $rekam->tindakan }} </td>
                             <td> {{ $rekam->keluhan }} </td>
                             <td> {{ $rekam->diagnosa }} </td>
-                            <td> {{ $rekam->obat }} </td>
-                            <td> {{ $rekam->resep }} </td>
                             <td> {{ $rekam->tgl_pemeriksaan }} </td>
                         </tr>
                     @endforeach

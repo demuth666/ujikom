@@ -10,7 +10,11 @@
         </section>
         <div class="add">
             <a href={{ route('add.pasien') }}>
-                <button class="button-create" role="button">Tambah</button>
+                <button class="button-add" role="button" type="submit">
+                    <span class="button__icon">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                    </span>
+                </button>
             </a>
         </div>
         <section class="table__body">
@@ -47,11 +51,7 @@
                                 <td>
                                     <div class="button-action">
                                         <a href={{ route('edit.pasien', $pasien->id) }}>
-                                            <button type="button" class="button-edit">
-                                                <span class="button__icon">
-                                                    <ion-icon name="create-outline"></ion-icon>
-                                                </span>
-                                            </button>
+                                            <button class="button-edit" role="button">Edit</button>
                                         </a>
 
                                         <form action={{ route('destroy.pasien', $pasien->id) }} id="delete-form"

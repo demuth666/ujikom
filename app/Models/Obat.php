@@ -22,4 +22,9 @@ class Obat extends Model
     {
         return $this->hasMany(RekamMedis::class);
     }
+    
+    public function resep()
+    {
+        return $this->hasMany(Resep::class);
+    }
 }

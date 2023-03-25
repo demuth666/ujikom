@@ -1,12 +1,6 @@
  <div class="container">
      <ul class="link-items">
          <li class="link-item">
-             <a href="#" class="link">
-                 <ion-icon name="grid-outline"></ion-icon>
-                 <span style="--i: 6">Dashboard</span>
-             </a>
-         </li>
-         <li class="link-item">
              @if (Auth::user()->user_id == 'admin')
                  <a href={{ route('rekam.medis') }} class="link">
                      <ion-icon name="book-outline"></ion-icon>
@@ -26,18 +20,20 @@
                      <span style="--i: 2">Dokter</span>
                  </a>
              </li>
+         @endif
+         @if (Auth::user()->user_id == 'admin')
              <li class="link-item">
                  <a href={{ route('pasien') }} class="link">
                      <ion-icon name="people-outline"></ion-icon>
                      <span style="--i: 3">Pasien</span>
                  </a>
              </li>
-             <li class="link-item">
+             {{-- <li class="link-item">
                  <a href={{ route('tindakan') }} class="link">
                      <ion-icon name="accessibility-outline"></ion-icon>
                      <span style="--i: 4">Tindakan</span>
                  </a>
-             </li>
+             </li> --}}
              <li class="link-item">
                  <a href="{{ route('obat') }}" class="link">
                      <ion-icon name="medkit-outline"></ion-icon><span style="--i: 5">Obat</span>

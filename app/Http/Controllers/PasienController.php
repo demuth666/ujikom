@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasien;
+use App\Models\RekamMedis;
 use Dompdf\Dompdf;
 
 
@@ -68,7 +69,23 @@ class PasienController extends Controller
             'hub_kel' => ['required', 'string'],
         ]);
 
-        Pasien::create($request->all());
+        $pasien = Pasien::create([
+            'nama_pasien' => $request->nama_pasien,
+            'j_kelamin' => $request->j_kelamin,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat,
+            'tgl_lahir' => $request->tgl_lahir,
+            'usia' => $request->usia,
+            'no_tlp' => $request->no_tlp,
+            'nm_kk' => $request->nm_kk,
+            'hub_kel' => $request->hub_kel,
+        ]);
+
+        $rekam = new RekamMedis();
+        $rekam->pasien_id = $pasien->id;
+        $rekam->pasiens = $pasien->nama_pasien;
+        $rekam->save(); 
+
         return redirect('/Pasien')->with('toast_success', 'Data berhasil tersimpan!');;
     }
 

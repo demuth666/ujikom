@@ -29,6 +29,11 @@ class Pasien extends Model
         return $this->hasMany(RekamMedis::class);
     }
 
+    public function resep()
+    {
+        return $this->hasMany(Resep::class);
+    }
+
     public static function boot()
     {
         parent::boot();
@@ -42,5 +47,10 @@ class Pasien extends Model
                 $model->no_rm = 'RM' . date('Ymd') . str_pad(static::count() + 1, 4, '0', STR_PAD_LEFT);
             }
         });
+    }
+
+    public function catatanrekam()
+    {
+        return $this->hasMany(CatatanRekam::class);
     }
 }

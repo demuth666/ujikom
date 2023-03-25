@@ -3,7 +3,7 @@
     <main class="table">
         <section class="table__header">
             <h3>Pasien</h3>
-            <form action="{{ route('search.pasien') }}" method="GET" class="input-group">
+            <form action="{{ route('search.pemeriksaan') }}" method="GET" class="input-group">
                 <input type="search" name="data" placeholder="Search Data...">
                 <ion-icon name="search-outline"></ion-icon>
             </form>
@@ -37,6 +37,9 @@
                                     <div class="button-action">
                                         <a href={{ route('add.pemeriksaan', $pasien->id) }}>
                                             <button class="button-edit" role="button">Tambah Pemeriksaan</button>
+                                        </a>
+                                        <a href={{ route('detail.pemeriksaan', ['pasien_id' => $pasien->id]) }}>
+                                            <button class="button-edit" role="button">Lihat Detail</button>
                                         </a>
                                     </div>
                                 </td>
