@@ -4,23 +4,24 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pasien;
+use App\Models\RekamMedis;
 use Dompdf\Dompdf;
 
 
 class PasienController extends Controller
 {
 
-    public function generatePDF($id) {
-        $pasien = Pasien::where('id', $id)->get();    
+    public function generatePDF($id, $nama_pasien) {
+        $pasien = Pasien::where('id', $id)->get(); 
+        $nama = Pasien::where('nama_pasien', $nama_pasien);
         $pdf = new Dompdf();
         $pdf->loadHtml(view('admin.pages.Pasien.cetak', [
-            // 'data' => $data,
             'pasien' => $pasien
         ])); 
         $pdf->setPaper('A4', 'portrait');
         $pdf->render();
     
-        return $pdf->stream('dokumen.pdf'); 
+        return $pdf->stream('kartu pasien.pdf'); 
     }
 
     public function search(Request $request)
@@ -43,7 +44,7 @@ class PasienController extends Controller
 
     public function index()
     {
-        $pasien = Pasien::all();
+        $pasien = Pasien::paginate(10);
         return view('admin.pages.Pasien.index', [
             'pasien' => $pasien
         ]);
@@ -68,7 +69,23 @@ class PasienController extends Controller
             'hub_kel' => ['required', 'string'],
         ]);
 
-        Pasien::create($request->all());
+        $pasien = Pasien::create([
+            'nama_pasien' => $request->nama_pasien,
+            'j_kelamin' => $request->j_kelamin,
+            'agama' => $request->agama,
+            'alamat' => $request->alamat,
+            'tgl_lahir' => $request->tgl_lahir,
+            'usia' => $request->usia,
+            'no_tlp' => $request->no_tlp,
+            'nm_kk' => $request->nm_kk,
+            'hub_kel' => $request->hub_kel,
+        ]);
+
+        $rekam = new RekamMedis();
+        $rekam->pasien_id = $pasien->id;
+        $rekam->pasiens = $pasien->nama_pasien;
+        $rekam->save(); 
+
         return redirect('/Pasien')->with('toast_success', 'Data berhasil tersimpan!');;
     }
 

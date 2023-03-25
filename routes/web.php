@@ -10,6 +10,8 @@ use App\Http\Controllers\PoliController;
 use App\Http\Controllers\LabController;
 use App\Http\Controllers\KunjunganController;
 use App\Http\Controllers\PemeriksaanController;
+use App\Http\Controllers\DashController;
+use App\Http\Controllers\ResepController;
 
 
 /*
@@ -33,8 +35,10 @@ Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['cek_login:admin']], function () {
+        Route::get('Dashboard', [DashController::class, 'index'])->name('dashboard');
         //Rekam Medis 
         Route::get('RekamMedis', [RekamController::class, 'index'])->name('rekam.medis');
+        Route::get('RekamMedis/cetak', [RekamController::class, 'cetak'])->name('rekam.medis.cetak');
         Route::get('/get-user-data/{id}', [RekamController::class, 'getUserData']);
         Route::get('RekamMedis/Search', [RekamController::class, 'search'])->name('rekam.medis.search');
         Route::get('RekamMedis/add', [RekamController::class, 'create'])->name('rekam.medis.add');
@@ -42,6 +46,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('RekamMedis/edit/{id}', [RekamController::class, 'edit'])->name('rekam.medis.edit');
         Route::put('RekamMedis/update/{id}', [RekamController::class, 'update'])->name('rekam.medis.update');
         Route::delete('/RekamMedis/{id}', [RekamController::class, 'destroy'])->name('destroy.rekam.medis');
+        //Pemeriksaan Controller
+        
         //Dokter Controller
         Route::get('Dokter', [DokterController::class, 'index'])->name('dokter');
         Route::get('Dokter/Search', [DokterController::class, 'search'])->name('search.dokter');
@@ -52,7 +58,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Dokter/{id}', [DokterController::class, 'destroy'])->name('destroy.dokter');
         //Pasien Controller
         Route::get('Pasien', [PasienController::class, 'index'])->name('pasien');
-        Route::get('Pasien/print/{id}', [PasienController::class, 'generatePDF'])->name('print.pasien');
+        Route::get('Pasien/print/{id}/{nama_pasien}', [PasienController::class, 'generatePDF'])->name('print.pasien');
         Route::get('Pasien/Search', [PasienController::class, 'search'])->name('search.pasien');
         Route::get('Pasien/add', [PasienController::class, 'create'])->name('add.pasien');
         Route::post('Pasien/store', [PasienController::class, 'store'])->name('store.pasien');
@@ -101,10 +107,29 @@ Route::group(['middleware' => ['auth']], function () {
         Route::delete('/Kunjungan/{id}', [KunjunganController::class, 'destroy'])->name('destroy.kunjungan');
     });
     Route::group(['middleware' => ['cek_login:dokter']], function () {
+        //Resep Obat
+        Route::get('ResepObat', [ResepController::class, 'index'])->name('resep');
+        Route::get('ResepObat/add/{id}/{pasien_id}/', [ResepController::class, 'create'])->name('add.resep');
+        Route::post('/ResepObat/store', [ResepController::class, 'store'])->name('store.resep');
+        Route::get('/get-data/{id}', [ResepController::class, 'getData']);
+        Route::get('/delete-resep/{id}', [ResepController::class, 'DestroyResep'])->name('destroy.resep');
+    });
+
+    Route::group(['middleware' => function ($request, $next) {
+        if (auth()->check() && (auth()->user()->user_id == 'admin' || auth()->user()->user_id == 'dokter')) {
+            return $next($request);
+        }
+        abort(403, 'Unauthorized access.');
+    }], function () {
         Route::get('Pemeriksaan', [PemeriksaanController::class, 'index'])->name('pemeriksaan');
+        Route::get('Detail/{id}', [ResepController::class, 'lihat'])->name('lihat');
+        Route::get('Pasien/print/{kode_resep}', [ResepController::class, 'generatePDF'])->name('print.resep');
+        Route::get('Pemeriksaan/Detail/{pasien_id}', [PemeriksaanController::class, 'detail'])->name('detail.pemeriksaan');
+        Route::get('Pemeriksaan/Search', [PemeriksaanController::class, 'search'])->name('search.pemeriksaan');
         Route::get('Pemeriksaan/add/{id}', [PemeriksaanController::class, 'create'])->name('add.pemeriksaan');
         Route::post('Pemeriksaan/store', [PemeriksaanController::class, 'store'])->name('store.pemeriksaan');
+        Route::get('Pemeriksaan/cetak/{pasien_id}', [PemeriksaanController::class, 'cetak'])->name('rekam.medis.cetak');
     });
 });
 
-
+ 

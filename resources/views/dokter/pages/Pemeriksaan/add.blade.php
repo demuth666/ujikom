@@ -28,11 +28,7 @@
 
                         <div class="input-field">
                             <label>Tindakan</label>
-                            <select name="tindakan_id" class="pilih" required>
-                                @foreach ($tindakan as $tindakan)
-                                    <option value="{{ $tindakan->id }}" required>{{ $tindakan->nm_tindakan }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="tindakan">
                         </div>
 
                         <div class="input-field">
@@ -51,23 +47,11 @@
                 <div class="details-id">
                     <div class="fields">
                         <div class="input-field">
-                            <label>Obat</label>
-                            <select name="obat[]" class="pilih2" multiple required>
-                                @foreach ($obat as $obat)
-                                    <option value="{{ $obat->nama_obat }}" required>{{ $obat->nama_obat }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Resep</label>
-                            <input type="text" name="resep" required>
-                        </div>
-
-                        <div class="input-field">
                             <label>Tanggal Pemeriksaan</label>
                             <input type="date" name="tgl_pemeriksaan" required>
                         </div>
+
+                        <div class="input-field"></div>
                     </div>
                     <button class="nextBtn">
                         <span class="btnText">Simpan</span>

@@ -51,8 +51,8 @@
                         </div>
 
                         <div class="input-field">
-                            <label>Nama KK</label>
-                            <input type="text" name="nm_kk" required>
+                            <label>No KK</label>
+                            <input type="number" name="nm_kk" required>
                         </div>
                         <div class="input-field">
                             <label>Hub Keluarga</label>

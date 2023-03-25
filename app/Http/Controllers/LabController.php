@@ -62,7 +62,6 @@ class LabController extends Controller
     public function update($id, Request $request)
     {
        $lab = Lab::findOrFail($id);
-       $lab->no_rm = $request->no_rm;
        $lab->hasil_lab = $request->hasil_lab;
        $lab->ket = $request->ket;
        $lab->save();

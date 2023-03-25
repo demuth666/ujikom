@@ -8,9 +8,15 @@
                 <ion-icon name="search-outline"></ion-icon>
             </form>
         </section>
-        <div class="add"><a href="{{ route('add.kunjungan') }}">
-                <button class="button-create" role="button">Tambah</button>
-            </a></div>
+        <div class="add">
+            <a href={{ route('add.kunjungan') }}>
+                <button class="button-add" role="button" type="submit">
+                    <span class="button__icon">
+                        <ion-icon name="add-circle-outline"></ion-icon>
+                    </span>
+                </button>
+            </a>
+        </div>
         <section class="table__body">
             <table>
                 <thead>

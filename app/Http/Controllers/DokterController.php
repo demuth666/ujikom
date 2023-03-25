@@ -53,7 +53,7 @@ class DokterController extends Controller
             'nama_dokter' => ['required', 'string', 'max:255'],
             'sip' => ['required', 'integer'],
             'tempat_lahir' => ['required', 'string', 'max:255'],
-            'no_tlp' => ['required', 'integer'],
+            'no_tlp' => ['required', 'string'],
             'alamat' => ['required', 'string'],
         ]);
 
@@ -69,6 +69,7 @@ class DokterController extends Controller
        $dokter->save();
 
        $user = new User();
+       $user->id = $dokter->id;
        $user->user_id = 'dokter';
        $user->username = $dokter->nama_dokter;
        $user->password = Hash::make($request->input('password'));
@@ -98,6 +99,8 @@ class DokterController extends Controller
     {
         $dokter = Dokter::find($id);
         $dokter->delete();
+        $user = User::find($id);
+        $user->delete();
         return redirect('/Dokter')->with('toast_success', 'Data berhasil dihapus!');;
     }
 }

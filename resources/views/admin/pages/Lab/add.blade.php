@@ -17,12 +17,20 @@
                         </div>
 
                         <div class="input-field">
-                            <div class="input-field"
-                    <button class="nextBtn">
-                        <span class="btnText">Simpan</span>
-                    </button>
-                </div>
-            </div>
+                            <label>Hasil Lab</label>
+                            <input type="text" name="hasil_lab" required>
+                        </div>
+
+                        <div class="input-field">
+                            <label>Keterangan</label>
+                            <input type="text" name="ket" required>
+                        </div>
+                    </div>
+                    <div class="details-id">
+                        <button class="nextBtn">
+                            <span class="btnText">Simpan</span>
+                        </button>
+                    </div>
         </form>
     </div>
 @endsection

@@ -67,7 +67,8 @@ body {
   transform: translateX(0px);
 }
 .link-item a:hover {
-  background-color: var(--hover-clr);
+  background-color: #634DD0;
+  color: white;
 }
 .link-item.active a {
   color: var(--light-text-clr);
@@ -113,6 +114,7 @@ body {
   color: var(--primary-clr);
   background-color: var(--white-bg);  
 }
+
 
 main.table {
   margin: 0 15px;
@@ -325,6 +327,8 @@ thead th.active,tbody td.active {
   color: #6c00bd;
 }
 
+
+
 .button-delete {
   background: #fff;
   border-radius: 6px;
@@ -389,6 +393,25 @@ thead th.active,tbody td.active {
   background-color: lightblue;
   background-position: 0 0;
   /* color: #FF4742; */
+}
+
+.button-add {
+  display: flex;
+	height: 40px;
+	padding: 0;
+	background: #634DD0;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	overflow: hidden;
+	font-family: "Quicksand", sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.button-add:hover {
+	background: #6251B7;
 }
 
 .button-cetak {
@@ -598,5 +621,78 @@ form button:hover{
 
 .add {
   width: 0px;
-  margin-left: 89%;
+  margin-left: 91%;
+}
+
+.button {
+	display: flex;
+	height: 40px;
+	padding: 0;
+	background: #6246ea;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	overflow: hidden;
+	font-family: "Quicksand", sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	cursor: pointer;
+  margin-left: 83.5%;
+}
+
+.button:hover {
+	background: #634DD0;
+}
+
+.button__text,
+.button__icon {
+	display: inline-flex;
+	align-items: center;
+	padding: 0 24px;
+	color: #fff;
+	height: 100%;
+}
+
+.button__icon {
+	font-size: 1.5em;
+	background: rgba(0, 0, 0, 0.08);
+}
+
+a{
+  text-decoration: none;
+}
+
+.fields .input-resep{
+  display: flex;
+  width: calc(100% / 3 - 15px);
+  flex-direction: column;
+  margin: 4px 35px;
+}
+.input-resep label{
+  font-size: 12px;
+  font-weight: 500;
+  color: #2e2e2e;
+}
+
+.input-resep input, select{
+  outline: none;
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+  border-radius: 5px;
+  border: 1px solid #aaa;
+  padding: 0 15px;
+  height: 29px;
+  margin: 8px 0;
+}
+.input-resep input :focus,
+.input-resep select:focus{
+  box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+.input-resep select,
+.input-resep input[type="date"]{
+  color: #707070;
+}
+.input-resep input[type="date"]:valid{
+  color: #333;
 }

@@ -79,6 +79,41 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('#obat').on('change', function() {
+                var id = $(this).val();
+                if (id) {
+                    $.ajax({
+                        url: '/get-data/' + id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#harga').val(data.harga);
+                            $('#stock').val(data.stock);
+                        }
+                    });
+                } else {
+                    $('#harga').val();
+                    $('#stock').val();
+                }
+            });
+        });
+    </script>
+    <script>
+        function deleteData(id) {
+            $.ajax({
+                url: '/delete-resep/' + id,
+                type: 'DELETE',
+                success: function(result) {
+                    // handle success
+                },
+                error: function(xhr, status, error) {
+                    // handle error
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
